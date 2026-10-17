@@ -31,7 +31,24 @@ addEventListener('scroll', onScroll, { passive: true })
 onScroll()
 toTop.addEventListener('click', () => scrollTo({ top: 0 }))
 
-// Gallery: category filter + lightbox (only on the Gallery page)
+// Filter chips (Gallery, Publications): items carry data-cat="A|B|C"
+$$('.filters').forEach((bar) => {
+  const scope = bar.parentElement
+  const items = [...scope.querySelectorAll('[data-cat]')].filter((el) => el.tagName !== 'BUTTON')
+  bar.querySelectorAll('button').forEach((b) => b.addEventListener('click', () => {
+    bar.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', x === b))
+    items.forEach((it) => { it.hidden = b.dataset.cat !== 'All' && !it.dataset.cat.split('|').includes(b.dataset.cat) })
+    scope.querySelectorAll('.year-group').forEach((g) => { g.hidden = !g.querySelector('[data-cat]:not([hidden])') })
+    items.filter((it) => !it.hidden).forEach((it, n) => {
+      it.style.setProperty('--i', Math.min(n, 8))
+      it.classList.remove('in')
+      void it.offsetWidth // restart the fade-up animation
+      it.classList.add('in')
+    })
+  }))
+})
+
+// Gallery lightbox (only on the Gallery page)
 const box = $('.lightbox')
 if (box) {
   const figs = $$('.gallery figure')
@@ -47,19 +64,8 @@ if (box) {
     big.animate([{ opacity: 0 }, { opacity: 1 }], 300)
   }
 
-  $$('.filters button').forEach((b) => b.addEventListener('click', () => {
-    $$('.filters button').forEach((x) => x.setAttribute('aria-pressed', x === b))
-    figs.forEach((f) => { f.hidden = b.dataset.cat !== 'All' && f.dataset.cat !== b.dataset.cat })
-    shown = figs.filter((f) => !f.hidden)
-    shown.forEach((f, n) => {
-      f.style.setProperty('--i', Math.min(n, 8))
-      f.classList.remove('in')
-      void f.offsetWidth // restart the fade-up animation
-      f.classList.add('in')
-    })
-  }))
-
   figs.forEach((f) => f.querySelector('button').addEventListener('click', () => {
+    shown = figs.filter((g) => !g.hidden)
     show(shown.indexOf(f))
     box.showModal()
   }))

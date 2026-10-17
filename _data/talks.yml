@@ -1,8 +1,5 @@
 # Newest first. Add `video` (and optionally `thumb`, an image path or URL) to show it under Recordings.
-# Example:
-# - when: Sep 2026
-#   title: Title of the Talk
-#   event: Seminar or Conference Name
-#   place: Institution, City
-#   video: https://www.youtube.com/watch?v=...
-[]
+- when: "2026"
+  title: Robust and Interpretable Modeling of Dynamic Metabolic States from Longitudinal Multi-Omics under Dietary Perturbation and Aging
+  event: ISMB 2026
+  place: Poster 1462

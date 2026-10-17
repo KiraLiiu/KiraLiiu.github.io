@@ -15,6 +15,8 @@ Jekyll site, served by GitHub Pages at https://kiraliiu.github.io.
 
 图片请用 jpg / png / webp（iPhone 的 HEIC 浏览器显示不了）。
 
+**论文标签**（`_data/publications.yml`）：`type` 写 Method 或 Application；`fields` 从 Machine Learning / Clinical Informatics / Multi-omics / Bioinformatics / Epidemiology / Molecular Biology 里选，每个领域自带颜色，也会自动出现在筛选按钮里；`role` 写 Co-first author 或 First author。未发表的写 `year: Ongoing`。新增领域需在 `assets/style.css` 里给它配一个颜色。
+
 ## 目录
 
 ```

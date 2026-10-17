@@ -4,42 +4,61 @@ title: Research
 permalink: /research/
 ---
 {% capture me %}<span class="me">{{ site.author }}</span>{% endcapture %}
+{% assign pubs = site.data.publications %}
+{% assign fields = "" | split: "" %}
+{% for p in pubs %}{% assign fields = fields | concat: p.fields %}{% endfor %}
+{% assign fields = fields | uniq %}
+
 <section>
   <p class="eyebrow">Research</p>
-  <h2>What I work on</h2>
-  <p class="sub">Three threads run through my work, from the clinic to the cell.</p>
-  <ol class="themes">
-    <li class="reveal">
-      <h3>Clinical AI on EHR</h3>
-      <p>Multimodal models that combine clinical notes with structured EHR data to predict risk, such as opioid use disorder and suicide risk.</p>
-    </li>
-    <li class="reveal">
-      <h3>Robust patterns in clinical data</h3>
-      <p>Clustering and benchmarking methods that find reliable, interpretable disease patterns in noisy, high-dimensional data.</p>
-      <p class="links"><a href="https://github.com/KiraLiiu/SimCluster">SimCluster</a></p>
-    </li>
-    <li class="reveal">
-      <h3>Multi-omics &amp; metabolism</h3>
-      <p>Integrating transcriptomics, proteomics, and metabolomics to understand how diet and lifestyle shape lasting metabolic states.</p>
-      <p class="links"><a href="https://github.com/KiraLiiu/MOFA_analysis_pipeline">MOFA pipeline</a><a href="https://github.com/KiraLiiu/Interaction_Effect_Analysis">Interaction effects</a></p>
-    </li>
-  </ol>
+  <h2>From molecules to patients</h2>
+  <p class="lede">I develop <strong>robust, interpretable computational methods</strong> for noisy, high-dimensional biomedical data, and carry them across scales: from multi-omics in the lab to electronic health records in the clinic.</p>
+
+  <div class="tracks">
+    <div class="track reveal">
+      <p class="track-head"><span class="tag type-method">Method</span>What I build</p>
+      <ul>
+        <li><span class="dot f-machine-learning"></span><div><strong>Robust clustering</strong>reDPC: recurrent density peaks for noisy, high-dimensional data. <a href="https://github.com/KiraLiiu/SimCluster">SimCluster</a></div></li>
+        <li><span class="dot f-multi-omics"></span><div><strong>Longitudinal multi-omics modeling</strong>Dynamic metabolic states under diet and aging (ISMB 2026). <a href="https://github.com/KiraLiiu/MOFA_analysis_pipeline">MOFA pipeline</a></div></li>
+        <li><span class="dot f-bioinformatics"></span><div><strong>Bioinformatics software</strong>RNA-binding protein enrichment from single-cell data (patent).</div></li>
+      </ul>
+    </div>
+    <div class="track reveal">
+      <p class="track-head"><span class="tag type-application">Application</span>Where I apply it</p>
+      <ul>
+        <li><span class="dot f-clinical-informatics"></span><div><strong>Clinical informatics</strong>Multimodal deep phenotyping of opioid use disorder from EHR.</div></li>
+        <li><span class="dot f-multi-omics"></span><div><strong>Metabolism &amp; aging</strong>Epigenetic memory and persistent metabolic states.</div></li>
+        <li><span class="dot f-molecular-biology"></span><div><strong>Systems &amp; molecular biology</strong>Regulatory networks in lung injury, tissue mechanics, development.</div></li>
+        <li><span class="dot f-epidemiology"></span><div><strong>Nutritional epidemiology</strong>Lifestyle and HDL subfractions in the UK Biobank.</div></li>
+      </ul>
+    </div>
+  </div>
 </section>
 
 <section>
   <h3>Publications</h3>
   <p class="note">† co-first author · * corresponding author{% if site.scholar %} · <a href="{{ site.scholar }}">Google Scholar</a>{% endif %}</p>
-  {% assign published = site.data.publications | where_exp: "p", "p.wip != true" %}
-  {% assign years = published | group_by: "year" | sort: "name" | reverse %}
+  <div class="filters" role="group" aria-label="Filter publications">
+    <button type="button" data-cat="All" aria-pressed="true">All</button>
+    <button type="button" data-cat="Method" aria-pressed="false">Method</button>
+    <button type="button" data-cat="Application" aria-pressed="false">Application</button>
+    {% for f in fields %}<button type="button" class="f-{{ f | slugify }}" data-cat="{{ f }}" aria-pressed="false">{{ f }}</button>{% endfor %}
+  </div>
+
+  {% assign years = pubs | group_by: "year" | sort: "name" | reverse %}
   {% for y in years %}
   <div class="year-group">
     <p class="yr">{{ y.name }}</p>
     <ul class="pubs">
       {% for p in y.items %}
-      <li class="pub reveal">
-        <span class="venue">{{ p.venue }}</span>
+      <li class="pub reveal" data-cat="{{ p.type }}|{{ p.fields | join: '|' }}">
+        <p class="tags">
+          <span class="tag type-{{ p.type | slugify }}">{{ p.type }}</span>
+          {% for f in p.fields %}<span class="tag f-{{ f | slugify }}">{{ f }}</span>{% endfor %}
+          {% if p.role %}<span class="tag role role-{{ p.role | slugify }}">{{ p.role }}</span>{% endif %}
+        </p>
         <h4>{{ p.title }}</h4>
-        <p class="authors">{{ p.authors | replace: site.author, me }}{% if p.cite %} · <em>{{ p.cite }}</em>{% endif %}</p>
+        <p class="authors">{{ p.authors | replace: site.author, me }}{% if p.venue %} · <em>{{ p.venue }}</em>{% endif %}{% if p.status %} · <em>{{ p.status }}</em>{% endif %}</p>
         {% if p.award %}<p class="award">{{ p.award }}</p>{% endif %}
         {% if p.links %}<p class="links">{% for l in p.links %}<a href="{{ l[1] }}">{{ l[0] }}</a>{% endfor %}</p>{% endif %}
       </li>
@@ -48,19 +67,3 @@ permalink: /research/
   </div>
   {% endfor %}
 </section>
-
-{% assign wip = site.data.publications | where: "wip", true %}
-{% if wip.size > 0 %}
-<section>
-  <h3>In preparation</h3>
-  <ul class="pubs">
-    {% for p in wip %}
-    <li class="pub reveal">
-      <h4>{{ p.title }}</h4>
-      <p class="authors">{{ p.authors | replace: site.author, me }}</p>
-      {% if p.links %}<p class="links">{% for l in p.links %}<a href="{{ l[1] }}">{{ l[0] }}</a>{% endfor %}</p>{% endif %}
-    </li>
-    {% endfor %}
-  </ul>
-</section>
-{% endif %}
