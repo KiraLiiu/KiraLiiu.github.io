@@ -1,0 +1,23 @@
+# Newest first. The home page shows the top 10. Markdown links work in `text`.
+- when: "2026"
+  text: Started my Ph.D. in Biomedical Informatics at the University of Florida.
+- when: Jun 2025
+  text: Started my M.Sc. in Quantitative & Systems Biology at Northwestern University, working with Luis A. Nunes Amaral.
+- when: May 2025
+  text: Started a research internship at UMass Chan Medical School with Feifan Liu, on multimodal clinical risk prediction.
+- when: "2025"
+  text: Our paper on Gαq signaling and organ size in *Drosophila* is out in [Cell Communication and Signaling](https://doi.org/10.1186/s12964-025-02449-9).
+- when: "2025"
+  text: Patent CN120853674A on software for RNA-binding protein enrichment analysis from single-cell data.
+- when: Nov 2024
+  text: Joined the Comprehensive Diabetes Center at UW–Madison as a graduate research assistant.
+- when: Aug 2024
+  text: Started Ph.D. training in Nutrition and Metabolism at the University of Wisconsin–Madison.
+- when: Jun 2024
+  text: Graduated from Shanghai Jiao Tong University with the Outstanding Undergraduate Thesis Award (top 5%).
+- when: "2024"
+  text: Co-first-author paper on hyperoxia-induced acute lung injury published in [PeerJ](https://doi.org/10.7717/peerj.18069).
+- when: Jul 2023
+  text: Summer research at the University of Notre Dame with Jeremiah Zartman.
+- when: "2023"
+  text: Paper on fibroblasts and dermal fibrosis published in [Matrix Biology](https://doi.org/10.1016/j.matbio.2023.05.001).

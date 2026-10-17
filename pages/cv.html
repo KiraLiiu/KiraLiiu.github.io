@@ -1,0 +1,49 @@
+---
+layout: default
+title: CV
+permalink: /cv/
+---
+{% comment %} Any PDF in /files/ whose name starts with "cv" (cv.pdf, cv-clinical.pdf) gets a download button. {% endcomment %}
+{% assign pdfs = "" | split: "" %}
+{% for f in site.static_files %}
+  {% if f.path contains "/files/cv" and f.extname == ".pdf" %}{% assign pdfs = pdfs | push: f %}{% endif %}
+{% endfor %}
+{% assign cv = site.data.cv %}
+<section>
+  <p class="eyebrow">Curriculum Vitae</p>
+  <h2>CV</h2>
+  <p class="sub">Education, research experience, and honors.</p>
+  {% if pdfs.size > 0 %}
+  <p class="downloads">
+    {% for f in pdfs %}
+    {% assign label = f.basename | remove_first: "cv" | replace: "-", " " | replace: "_", " " | strip | capitalize %}
+    <a class="btn" href="{{ f.path | relative_url }}"><svg class="i" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>{% if label != "" %}{{ label }} {% endif %}CV (PDF)</a>
+    {% endfor %}
+  </p>
+  {% endif %}
+</section>
+
+{% assign sections = "education:Education,experience:Research experience,honors:Honors & awards" | split: "," %}
+{% for s in sections %}
+{% assign key = s | split: ":" | first %}
+{% assign heading = s | split: ":" | last %}
+{% if cv[key] %}
+<section>
+  <h3>{{ heading }}</h3>
+  <ul class="rows">
+    {% for e in cv[key] %}
+    <li class="reveal"><time>{{ e.when }}</time><div><strong>{{ e.title }}</strong>{% if e.org %}<span>{{ e.org }}</span>{% endif %}{% if e.detail %}<span class="detail">{{ e.detail }}</span>{% endif %}</div></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+{% endfor %}
+
+{% if cv.skills %}
+<section>
+  <h3>Skills</h3>
+  <dl class="skills">
+    {% for s in cv.skills %}<dt>{{ s.area }}</dt><dd>{{ s.items }}</dd>{% endfor %}
+  </dl>
+</section>
+{% endif %}

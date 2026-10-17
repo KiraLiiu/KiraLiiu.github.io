@@ -1,0 +1,36 @@
+---
+layout: default
+title: Music
+permalink: /music/
+---
+{% assign m = site.data.music %}
+<section>
+  <p class="eyebrow">Music</p>
+  <h2>What I play &amp; what's on repeat</h2>
+  <p class="sub">The other language I think in.</p>
+  {% if m.playing %}
+  <ul class="rows">
+    {% for p in m.playing %}
+    <li class="reveal"><time>{{ p.when }}</time><div><strong>{{ p.title }}</strong><span>{{ p.detail }}</span></div></li>
+    {% endfor %}
+  </ul>
+  {% elsif m.listening == nil %}
+  <p class="empty">More here soon.</p>
+  {% endif %}
+</section>
+
+{% if m.listening %}
+<section>
+  <h3>On repeat</h3>
+  <ul class="shelf">
+    {% for a in m.listening %}
+    <li class="reveal">
+      <a href="{{ a.link | default: '#' }}">
+        <div class="cover"{% if a.cover %} style="background-image: url('{{ a.cover | relative_url }}')"{% endif %}>{% unless a.cover %}{{ a.title | slice: 0 }}{% endunless %}</div>
+        <strong>{{ a.title }}</strong><span>{{ a.artist }}</span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}

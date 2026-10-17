@@ -1,0 +1,66 @@
+---
+layout: default
+title: Research
+permalink: /research/
+---
+{% capture me %}<span class="me">{{ site.author }}</span>{% endcapture %}
+<section>
+  <p class="eyebrow">Research</p>
+  <h2>What I work on</h2>
+  <p class="sub">Three threads run through my work, from the clinic to the cell.</p>
+  <ol class="themes">
+    <li class="reveal">
+      <h3>Clinical AI on EHR</h3>
+      <p>Multimodal models that combine clinical notes with structured EHR data to predict risk, such as opioid use disorder and suicide risk.</p>
+    </li>
+    <li class="reveal">
+      <h3>Robust patterns in clinical data</h3>
+      <p>Clustering and benchmarking methods that find reliable, interpretable disease patterns in noisy, high-dimensional data.</p>
+      <p class="links"><a href="https://github.com/KiraLiiu/SimCluster">SimCluster</a></p>
+    </li>
+    <li class="reveal">
+      <h3>Multi-omics &amp; metabolism</h3>
+      <p>Integrating transcriptomics, proteomics, and metabolomics to understand how diet and lifestyle shape lasting metabolic states.</p>
+      <p class="links"><a href="https://github.com/KiraLiiu/MOFA_analysis_pipeline">MOFA pipeline</a><a href="https://github.com/KiraLiiu/Interaction_Effect_Analysis">Interaction effects</a></p>
+    </li>
+  </ol>
+</section>
+
+<section>
+  <h3>Publications</h3>
+  <p class="note">† co-first author · * corresponding author{% if site.scholar %} · <a href="{{ site.scholar }}">Google Scholar</a>{% endif %}</p>
+  {% assign published = site.data.publications | where_exp: "p", "p.wip != true" %}
+  {% assign years = published | group_by: "year" | sort: "name" | reverse %}
+  {% for y in years %}
+  <div class="year-group">
+    <p class="yr">{{ y.name }}</p>
+    <ul class="pubs">
+      {% for p in y.items %}
+      <li class="pub reveal">
+        <span class="venue">{{ p.venue }}</span>
+        <h4>{{ p.title }}</h4>
+        <p class="authors">{{ p.authors | replace: site.author, me }}{% if p.cite %} · <em>{{ p.cite }}</em>{% endif %}</p>
+        {% if p.award %}<p class="award">{{ p.award }}</p>{% endif %}
+        {% if p.links %}<p class="links">{% for l in p.links %}<a href="{{ l[1] }}">{{ l[0] }}</a>{% endfor %}</p>{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endfor %}
+</section>
+
+{% assign wip = site.data.publications | where: "wip", true %}
+{% if wip.size > 0 %}
+<section>
+  <h3>In preparation</h3>
+  <ul class="pubs">
+    {% for p in wip %}
+    <li class="pub reveal">
+      <h4>{{ p.title }}</h4>
+      <p class="authors">{{ p.authors | replace: site.author, me }}</p>
+      {% if p.links %}<p class="links">{% for l in p.links %}<a href="{{ l[1] }}">{{ l[0] }}</a>{% endfor %}</p>{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}

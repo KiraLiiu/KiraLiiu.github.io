@@ -1,0 +1,11 @@
+# Both lists are optional; empty sections are hidden.
+# `cover` is an image path (e.g. /images/music/album.jpg) or URL; without it a tinted tile is shown.
+playing:
+  # - when: 2010 –
+  #   title: Piano
+  #   detail: Classical, and lately a lot of film scores
+listening:
+  # - title: Album Title
+  #   artist: Artist Name
+  #   cover: /images/music/album.jpg
+  #   link: https://open.spotify.com/album/...

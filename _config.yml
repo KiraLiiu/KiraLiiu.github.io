@@ -1,0 +1,23 @@
+title: Jinwen (Kira) Liu      # browser tab & footer
+name: Kira Liu                 # sidebar
+tagline: Ph.D. Student in Biomedical Informatics · University of Florida
+description: Jinwen (Kira) Liu — Ph.D. student in Biomedical Informatics at the University of Florida, working on biomedical AI and precision medicine.
+author: Liu, J.                # how your name appears in author lists (it gets underlined)
+
+email: jinwenliu@ufl.edu
+github: https://github.com/KiraLiiu
+linkedin: https://www.linkedin.com/in/kiraaliu/
+scholar:                       # paste your Google Scholar URL here; the icon appears automatically
+
+url: https://kiraliiu.github.io
+
+nav:
+  - { title: Home, url: / }
+  - { title: Research, url: /research/ }
+  - { title: Talks, url: /talks/ }
+  - { title: Gallery, url: /gallery/ }
+  - { title: Music, url: /music/ }
+  - { title: Community, url: /community/ }
+  - { title: CV, url: /cv/ }
+
+exclude: [README.md]

@@ -1,0 +1,68 @@
+education:
+  - when: 2026 –
+    title: Ph.D. in Biomedical Informatics
+    org: University of Florida · Gainesville, FL
+    detail: Department of Health Outcomes and Biomedical Informatics, College of Medicine
+  - when: 2025 – 2026
+    title: M.Sc. in Quantitative & Systems Biology
+    org: Northwestern University · Evanston, IL
+    detail: "Advisor: Luis A. Nunes Amaral"
+  - when: 2024 – 2025
+    title: Ph.D. training in Nutrition and Metabolism (transferred)
+    org: University of Wisconsin–Madison · Madison, WI
+    detail: "Advisor: John Denu"
+  - when: 2020 – 2024
+    title: B.Sc. in Clinical Nutrition and Public Health
+    org: Shanghai Jiao Tong University · Shanghai, China
+    detail: "Advisor: Xiang Gao"
+
+experience:
+  - when: Jun 2025 –
+    title: Graduate Research Assistant, Amaral Lab
+    org: Engineering Sciences & Applied Mathematics, Northwestern University
+    detail: Robust, interpretable modeling of disease patterns from high-dimensional EHR data
+  - when: May – Sep 2025
+    title: Research Intern
+    org: Population & Quantitative Health Sciences, UMass Chan Medical School (remote)
+    detail: "Multimodal risk prediction from clinical notes and EHR data · Supervisor: Feifan Liu"
+  - when: Nov 2024 – Oct 2025
+    title: Graduate Research Assistant
+    org: Comprehensive Diabetes Center, University of Wisconsin–Madison
+    detail: "Multi-omics integration of diet-perturbed metabolic states · Supervisors: John Denu, Dudley Lamming, Judith Simcox"
+  - when: Jan – Jun 2024
+    title: Undergraduate Researcher
+    org: School of Public Health, Fudan University
+    detail: "Lifestyle factors and HDL subfractions in the UK Biobank · Supervisor: Xiang Gao"
+  - when: Nov 2023 – Jan 2024
+    title: Nutritionist Intern (Clinical Rotations)
+    org: Huashan Hospital, Fudan University
+    detail: Nutrition assessment and individualized intervention plans
+  - when: Sep – Nov 2023
+    title: Lab Assistant
+    org: Shanghai Institute of Nutrition and Health, Chinese Academy of Sciences
+    detail: "Diabetes intervention studies and Mendelian randomization · Supervisor: Geng Zong"
+  - when: Jul – Aug 2023
+    title: Undergraduate Researcher
+    org: Biomolecular Engineering, University of Notre Dame
+    detail: "Gαq-mediated calcium signaling in Drosophila wing disc development · Supervisor: Jeremiah Zartman"
+  - when: Sep 2022 – Aug 2024
+    title: Undergraduate Researcher
+    org: Center for Single-Cell Omics, Shanghai Jiao Tong University
+    detail: "Multi-omics regulatory networks in lung injury; m6A regulation in tumors · Supervisor: Xiaolin Hu"
+
+honors:
+  - { when: "2024", title: "Outstanding Undergraduate Thesis Award, SJTU (top 5%)" }
+  - { when: "2024", title: "5th Life Science Competition of SJTU, 2nd Prize (top 10%)" }
+  - { when: "2023", title: "University Undergraduate Research Training Grant (top 20%)" }
+  - { when: "2023", title: "Academic Scholarship of SJTU (top 25%)" }
+  - { when: "2022", title: "National Undergraduate Research Training Grant (top 5% nationwide)" }
+  - { when: "2022", title: "Academic Scholarship of SJTU (top 25%)" }
+  - { when: "2021", title: "Merit Student of SJTU (top 5%)" }
+
+skills:
+  - { area: Programming, items: "Python (pandas, NumPy, scikit-learn), PyTorch, R (tidyverse), SQL, Linux/Bash, Git" }
+  - { area: Modeling & ML, items: "GLM, GEE, XGBoost, Random Forest, SVM, feature engineering, cross-validation, calibration" }
+  - { area: Bioinformatics, items: "RNA-seq (DESeq2, limma), scRNA-seq (Seurat), ATAC-/ChIP-seq, proteomics, metabolomics, GWAS" }
+  - { area: Multi-omics, items: "MOFA, GO/KEGG/GSEA enrichment, network analysis (ARACNe, WGCNA)" }
+  - { area: Workflow & cloud, items: "Nextflow, Snakemake, HPC, AWS, Docker, REDCap" }
+  - { area: Wet lab, items: "FPLC, immunofluorescence, Western blot, qPCR, Drosophila and mouse work, cell culture" }

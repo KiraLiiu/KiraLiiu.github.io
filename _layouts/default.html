@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title and page.title != "Home" %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ page.description | default: site.description }}">
+  <script>
+    document.documentElement.className = 'js';
+    try {
+      var t = localStorage.getItem('theme');
+      if (!sessionStorage.getItem('seen')) { document.documentElement.classList.add('intro'); sessionStorage.setItem('seen', 1) }
+    } catch (e) {}
+    document.documentElement.dataset.theme = t || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@300..700&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&display=swap">
+  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+  <script src="{{ '/assets/main.js' | relative_url }}" defer></script>
+</head>
+<body>
+  <div class="progress" aria-hidden="true"></div>
+
+  <aside class="sidebar">
+    <header>
+      {% assign avatar = site.static_files | where_exp: "f", "f.path contains '/images/avatar.'" | first %}
+      {% assign initials = site.name | split: " " %}
+      <div class="avatar">{% if avatar %}<img src="{{ avatar.path | relative_url }}" alt="{{ site.name }}">{% else %}<span aria-hidden="true">{{ initials.first | slice: 0 }}{{ initials.last | slice: 0 }}</span>{% endif %}</div>
+      <h1><a href="{{ '/' | relative_url }}">{{ site.name }}</a></h1>
+      <p class="tagline">{{ site.tagline }}</p>
+    </header>
+    <nav aria-label="Main">
+      <ul>
+        {% for item in site.nav %}
+        <li><a href="{{ item.url | relative_url }}"{% if page.url == item.url %} class="active" aria-current="page"{% endif %}>{{ item.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+    <footer>
+      {% if site.email %}<a class="icon-btn" href="mailto:{{ site.email }}" aria-label="Email"><svg class="i" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a>{% endif %}
+      {% if site.scholar %}<a class="icon-btn" href="{{ site.scholar }}" aria-label="Google Scholar"><svg class="i" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg></a>{% endif %}
+      {% if site.github %}<a class="icon-btn" href="{{ site.github }}" aria-label="GitHub"><svg class="i" viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg></a>{% endif %}
+      {% if site.linkedin %}<a class="icon-btn" href="{{ site.linkedin }}" aria-label="LinkedIn"><svg class="i" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>{% endif %}
+      <button class="icon-btn theme" type="button" aria-label="Toggle dark mode">
+        <svg class="i moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        <svg class="i sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2m-7.07-17.07 1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+    </footer>
+  </aside>
+
+  <main>
+    {{ content }}
+    <footer class="site-footer">
+      <p>© {{ site.time | date: "%Y" }} {{ site.title }}</p>
+      <p>Palette &amp; type after <a href="https://hugo-apero.netlify.app/">Hugo Apéro</a> · layout after <a href="https://html5up.net/read-only">Read Only</a></p>
+    </footer>
+  </main>
+
+  <button class="to-top" type="button" aria-label="Back to top"><svg class="i" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg></button>
+</body>
+</html>

@@ -1,0 +1,30 @@
+---
+layout: default
+title: Home
+permalink: /
+---
+<section>
+  <p class="eyebrow">Biomedical AI · Multi-omics · Clinical Data</p>
+  <h2 class="display">Hello, I'm Kira.</h2>
+  <div class="prose">
+    <p class="lede">I'm Jinwen (Kira) Liu, a Ph.D. student in Biomedical Informatics at the <a href="https://hobi.med.ufl.edu/">Department of Health Outcomes and Biomedical Informatics</a>, University of Florida College of Medicine. I work at the intersection of <strong>biomedical AI</strong> and <strong>precision medicine</strong>.</p>
+    <p>I build models that make sense of complex clinical and molecular data: <strong>multimodal risk prediction</strong> from clinical notes and EHR, <strong>robust clustering</strong> of high-dimensional patient data, and <strong>multi-omics integration</strong> of metabolic states.</p>
+    <p>Before UF, I trained in Quantitative &amp; Systems Biology at Northwestern University (M.Sc., with Luis A. Nunes Amaral), in Nutrition and Metabolism at the University of Wisconsin–Madison, and in Clinical Nutrition and Public Health at Shanghai Jiao Tong University (B.Sc.).</p>
+    <p>Questions that excite me:</p>
+    <ol class="questions">
+      <li>How can clinical notes and structured EHR data be combined to flag risk earlier and more reliably?</li>
+      <li>How do we find disease patterns in noisy, high-dimensional data that are both robust and interpretable?</li>
+      <li>How do diet and lifestyle leave lasting molecular imprints, and what can multi-omics tell us about them?</li>
+    </ol>
+    <p>Beyond research, this site is also home to my <a href="{{ '/gallery/' | relative_url }}">gallery</a>, <a href="{{ '/music/' | relative_url }}">music</a>, and <a href="{{ '/community/' | relative_url }}">community</a> work.</p>
+  </div>
+</section>
+
+<section>
+  <h3>What's new</h3>
+  <ul class="news">
+    {% for n in site.data.news limit: 10 %}
+    <li class="reveal"><time>{{ n.when }}</time><span>{{ n.text | markdownify | remove: '<p>' | remove: '</p>' }}</span></li>
+    {% endfor %}
+  </ul>
+</section>

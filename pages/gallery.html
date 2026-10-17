@@ -1,0 +1,64 @@
+---
+layout: default
+title: Gallery
+permalink: /gallery/
+---
+{% comment %}
+  Every image in /images/gallery/ shows up here automatically.
+  Subfolder = category (images/gallery/Photography/...). File name = caption:
+  "2025-Morning-Light.jpg" -> "Morning Light", 2025. Newest file names first.
+{% endcomment %}
+{% assign exts = ".jpg .jpeg .png .webp .gif .avif" %}
+{% assign photos = "" | split: "" %}
+{% assign cats = "" | split: "" %}
+{% for f in site.static_files %}
+  {% assign ext = f.extname | downcase %}
+  {% if f.path contains "/images/gallery/" and exts contains ext %}
+    {% assign photos = photos | push: f %}
+    {% assign parts = f.path | split: "/" %}
+    {% if parts.size > 4 %}{% assign cats = cats | push: parts[3] %}{% endif %}
+  {% endif %}
+{% endfor %}
+{% assign photos = photos | sort: "name" | reverse %}
+{% assign cats = cats | uniq | sort %}
+
+<section>
+  <p class="eyebrow">Gallery</p>
+  <h2>Things I see &amp; make</h2>
+  <p class="sub">Moments and work from away from the desk.</p>
+
+  {% if photos.size == 0 %}
+  <p class="empty">Photos coming soon.</p>
+  {% else %}
+  {% if cats.size > 1 %}
+  <div class="filters" role="group" aria-label="Filter by category">
+    <button type="button" data-cat="All" aria-pressed="true">All</button>
+    {% for c in cats %}<button type="button" data-cat="{{ c }}" aria-pressed="false">{{ c }}</button>{% endfor %}
+  </div>
+  {% endif %}
+
+  <div class="gallery">
+    {% for f in photos %}
+    {% assign parts = f.path | split: "/" %}
+    {% assign cat = "" %}{% if parts.size > 4 %}{% assign cat = parts[3] %}{% endif %}
+    {% assign year = f.basename | slice: 0, 4 %}{% assign y = year | plus: 0 %}
+    {% assign title = f.basename %}
+    {% if y > 1900 %}{% assign title = title | slice: 5, title.size | default: f.basename %}{% else %}{% assign year = "" %}{% endif %}
+    {% assign title = title | replace: "-", " " | replace: "_", " " %}
+    <figure class="reveal" data-cat="{{ cat }}">
+      <button type="button" aria-label="Open {{ title }}"><img src="{{ f.path | relative_url }}" alt="{{ title }}" loading="lazy"></button>
+      <figcaption><strong>{{ title }}</strong>{{ cat }}{% if cat != "" and year != "" %} · {% endif %}{{ year }}</figcaption>
+    </figure>
+    {% endfor %}
+  </div>
+  {% endif %}
+</section>
+
+{% if photos.size > 0 %}
+<dialog class="lightbox" aria-label="Image viewer">
+  <figure><img src="" alt=""><figcaption></figcaption></figure>
+  <button class="lb-btn prev" type="button" aria-label="Previous"><svg class="i" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
+  <button class="lb-btn next" type="button" aria-label="Next"><svg class="i" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
+  <form method="dialog"><button class="lb-btn close" aria-label="Close"><svg class="i" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></form>
+</dialog>
+{% endif %}
