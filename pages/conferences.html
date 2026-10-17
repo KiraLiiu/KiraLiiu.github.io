@@ -1,0 +1,52 @@
+---
+layout: default
+title: Conferences
+permalink: /conferences/
+---
+{% assign items = site.data.conferences %}
+<section>
+  <p class="eyebrow">Conferences</p>
+  <h2>Talks &amp; posters</h2>
+  <p class="sub">Happy to talk about my work. Feel free to <a href="mailto:{{ site.email }}">reach out</a>.</p>
+  {% if items.size > 0 %}
+  <ul class="pubs confs">
+    {% for c in items %}
+    {% capture me %}<span class="me">{{ c.me }}</span>{% endcapture %}
+    <li class="pub reveal">
+      <time>{{ c.when }}</time>
+      <div>
+        <p class="tags">
+          <span class="tag kind">{{ c.kind }}</span>
+          {% for f in c.fields %}<span class="tag f-{{ f | slugify }}">{{ f }}</span>{% endfor %}
+        </p>
+        <h4>{{ c.title }}</h4>
+        <p class="authors">{% if c.me %}{{ c.authors | replace: c.me, me }}{% else %}{{ c.authors }}{% endif %} · <em>{{ c.event }}</em></p>
+        {% if c.links %}<p class="links">{% for l in c.links %}<a href="{{ l[1] }}">{{ l[0] }}</a>{% endfor %}</p>{% endif %}
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="empty">Talks and posters will be listed here.</p>
+  {% endif %}
+</section>
+
+{% assign recorded = items | where_exp: "t", "t.video" %}
+{% if recorded.size > 0 %}
+<section>
+  <h3>Recordings</h3>
+  <ul class="videos">
+    {% for t in recorded %}
+    <li class="reveal">
+      <a href="{{ t.video }}">
+        <div class="thumb"{% if t.thumb %} style="background-image: url('{{ t.thumb | relative_url }}')"{% endif %}>
+          <span class="play"><svg class="i" viewBox="0 0 24 24"><polygon points="7 4 20 12 7 20 7 4"/></svg></span>
+        </div>
+        <h4>{{ t.title }}</h4>
+        <p>{{ t.event }} · {{ t.when }}</p>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}

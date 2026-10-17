@@ -11,25 +11,25 @@ permalink: /research/
 
 <section>
   <p class="eyebrow">Research</p>
-  <h2>From molecules to patients</h2>
-  <p class="lede">I develop <strong>robust, interpretable computational methods</strong> for noisy, high-dimensional biomedical data, and carry them across scales: from multi-omics in the lab to electronic health records in the clinic.</p>
-
-  <div class="tracks">
-    <div class="track reveal">
-      <p class="track-head"><span class="tag type-method">Method</span>What I build</p>
+  <h2>From molecules to populations</h2>
+  <p class="lede">I build robust, interpretable computational methods for complex health data, and use them to ask questions across scales, from molecular profiles to patients to communities.</p>
+  <div class="interests">
+    <div class="reveal">
+      <h4>Methods I work with</h4>
       <ul>
-        <li><span class="dot f-machine-learning"></span><div><strong>Robust clustering</strong>reDPC: recurrent density peaks for noisy, high-dimensional data. <a href="https://github.com/KiraLiiu/SimCluster">SimCluster</a></div></li>
-        <li><span class="dot f-multi-omics"></span><div><strong>Longitudinal multi-omics modeling</strong>Dynamic metabolic states under diet and aging (ISMB 2026). <a href="https://github.com/KiraLiiu/MOFA_analysis_pipeline">MOFA pipeline</a></div></li>
-        <li><span class="dot f-bioinformatics"></span><div><strong>Bioinformatics software</strong>RNA-binding protein enrichment from single-cell data (patent).</div></li>
+        <li>Machine learning for biomedical data</li>
+        <li>Clinical informatics &amp; multimodal EHR</li>
+        <li>Multi-omics integration</li>
+        <li>Statistical &amp; Bayesian modeling</li>
       </ul>
     </div>
-    <div class="track reveal">
-      <p class="track-head"><span class="tag type-application">Application</span>Where I apply it</p>
+    <div class="reveal">
+      <h4>Areas I care about</h4>
       <ul>
-        <li><span class="dot f-clinical-informatics"></span><div><strong>Clinical informatics</strong>Multimodal deep phenotyping of opioid use disorder from EHR.</div></li>
-        <li><span class="dot f-multi-omics"></span><div><strong>Metabolism &amp; aging</strong>Epigenetic memory and persistent metabolic states.</div></li>
-        <li><span class="dot f-molecular-biology"></span><div><strong>Systems &amp; molecular biology</strong>Regulatory networks in lung injury, tissue mechanics, development.</div></li>
-        <li><span class="dot f-epidemiology"></span><div><strong>Nutritional epidemiology</strong>Lifestyle and HDL subfractions in the UK Biobank.</div></li>
+        <li>Mental health &amp; substance use</li>
+        <li>Metabolism, nutrition &amp; aging</li>
+        <li>LGBTQ+ health &amp; health equity</li>
+        <li>Molecular mechanisms of disease</li>
       </ul>
     </div>
   </div>
@@ -37,11 +37,9 @@ permalink: /research/
 
 <section>
   <h3>Publications</h3>
-  <p class="note">† co-first author · * corresponding author{% if site.scholar %} · <a href="{{ site.scholar }}">Google Scholar</a>{% endif %}</p>
-  <div class="filters" role="group" aria-label="Filter publications">
+  <p class="note">† co-first author · * corresponding author · Talks &amp; posters are under <a href="{{ '/conferences/' | relative_url }}">Conferences</a>{% if site.scholar %} · <a href="{{ site.scholar }}">Google Scholar</a>{% endif %}</p>
+  <div class="filters" role="group" aria-label="Filter publications by field">
     <button type="button" data-cat="All" aria-pressed="true">All</button>
-    <button type="button" data-cat="Method" aria-pressed="false">Method</button>
-    <button type="button" data-cat="Application" aria-pressed="false">Application</button>
     {% for f in fields %}<button type="button" class="f-{{ f | slugify }}" data-cat="{{ f }}" aria-pressed="false">{{ f }}</button>{% endfor %}
   </div>
 
@@ -51,9 +49,8 @@ permalink: /research/
     <p class="yr">{{ y.name }}</p>
     <ul class="pubs">
       {% for p in y.items %}
-      <li class="pub reveal" data-cat="{{ p.type }}|{{ p.fields | join: '|' }}">
+      <li class="pub reveal" data-cat="{{ p.fields | join: '|' }}">
         <p class="tags">
-          <span class="tag type-{{ p.type | slugify }}">{{ p.type }}</span>
           {% for f in p.fields %}<span class="tag f-{{ f | slugify }}">{{ f }}</span>{% endfor %}
           {% if p.role %}<span class="tag role role-{{ p.role | slugify }}">{{ p.role }}</span>{% endif %}
         </p>

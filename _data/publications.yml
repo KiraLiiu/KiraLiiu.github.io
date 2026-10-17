@@ -1,76 +1,47 @@
-# Grouped by `year` on the Research page; use `year: Ongoing` for unpublished work (listed first).
-# type:   Method (you built a computational method/tool) or Application (you used methods to answer a question)
-# fields: any of Machine Learning, Clinical Informatics, Multi-omics, Bioinformatics, Epidemiology, Molecular Biology
+# Grouped by `year` on the Research page (newest first).
+# fields: any of Machine Learning, Clinical Informatics, Multi-omics, Bioinformatics, Epidemiology, Statistical Modeling, Molecular Biology
 # role:   optional highlight, e.g. "Co-first author" or "First author"
-# Optional: status, award, links. † co-first author, * corresponding author.
+# Optional: status, venue, award, links. † co-first author, * corresponding author.
+# Conference talks & posters live in _data/conferences.yml.
 
 - title: "reDPC: Robust Clustering through Recurrent Density Peaks"
   authors: Liu, J., Xu, F., Amaral, L.*
   status: Manuscript
-  year: Ongoing
-  type: Method
+  year: 2026
   fields: [Machine Learning, Clinical Informatics]
   role: First author
 
 - title: Multimodal Deep Phenotyping of Opioid Use Disorder Using Electronic Health Records
   authors: Liu, J., Yin, B., Liu, F.*
-  status: In preparation
-  year: Ongoing
-  type: Application
+  status: Manuscript
+  year: 2026
   fields: [Clinical Informatics, Machine Learning]
   role: First author
 
-- title: Diet History Is Epigenetically Remembered and Linked to Persistent Metabolic States
-  authors: Calubag, M., Liu, J., et al., Denu, J.*, Lamming, D.*
-  status: In preparation
-  year: Ongoing
-  type: Application
-  fields: [Multi-omics]
-
-- title: Multi-omics Profiling Ferroptosis Regulatory Networks in Hyperoxia-Induced Acute Lung Injury
-  authors: Qin, S.†, Liu, J.†, et al., Hu, X.*
-  status: In preparation
-  year: Ongoing
-  type: Application
-  fields: [Multi-omics]
-  role: Co-first author
-
-- title: Octn2 Regulates Thermogenic Acylcarnitine Uptake in Brown Adipocytes
-  authors: Bank, H., Wu, F., James, I., Miles, H., Liu, J., et al., Simcox, J.*
-  status: In preparation
-  year: Ongoing
-  type: Application
-  fields: [Molecular Biology]
-
-- title: Robust and Interpretable Modeling of Dynamic Metabolic States from Longitudinal Multi-Omics under Dietary Perturbation and Aging
-  authors: Liu, J., et al.
-  venue: ISMB 2026 · Poster 1462
+- title: Multi-omics Reveals Selective Mitochondrial Complex I Protein Loss and Ferroptosis-Associated Remodeling in Hyperoxic Acute Lung Injury
+  authors: Liu, J., Yang, Y., Wang, Y., Yu, K., Liu, X., Li, K., Mei, H., Chen, M., Hu, X., Qin, S.
+  status: Manuscript
   year: 2026
-  type: Method
-  fields: [Multi-omics, Machine Learning]
+  fields: [Multi-omics, Bioinformatics]
   role: First author
-  links: { Code: "https://github.com/KiraLiiu/MOFA_analysis_pipeline" }
 
 - title: Gαq Controls Organ Size and Developmental Timing in Drosophila
   authors: Unger, M., Velagala, V., Soundarrajan, D., Gazzo, D., Kumar, N., Flores, M., Liu, J., Li, J., Zartman, J.*
   venue: Cell Communication and Signaling 23(1), 457
   year: 2025
-  type: Application
   fields: [Molecular Biology]
   links: { DOI: "https://doi.org/10.1186/s12964-025-02449-9" }
 
-- title: Software for RNA-Binding Protein Enrichment Analysis Based on Single-Cell Transcriptomic Data
+- title: "REmap: Software for RNA-Binding Protein Enrichment Analysis Based on Single-Cell Transcriptomic Data"
   authors: Hu, X., Liu, J., Wang, H.
   venue: China Patent CN120853674A
   year: 2025
-  type: Method
   fields: [Bioinformatics]
 
 - title: Deciphering Regulatory Patterns in a Mouse Model of Hyperoxia-Induced Acute Lung Injury
   authors: Chen, Y.†, Liu, J.†, et al., Hu, X.*
   venue: PeerJ 12, e18069
   year: 2024
-  type: Application
   fields: [Multi-omics, Bioinformatics]
   role: Co-first author
   links: { DOI: "https://doi.org/10.7717/peerj.18069" }
@@ -80,7 +51,6 @@
   venue: Undergraduate Thesis, Shanghai Jiao Tong University
   award: Outstanding Undergraduate Thesis Award (top 5%)
   year: 2024
-  type: Application
   fields: [Epidemiology]
   role: First author
 
@@ -88,6 +58,5 @@
   authors: Zhu, L., Liu, L., Wang, A., Liu, J., Huang, X., Zan, T.*
   venue: Matrix Biology 121, 1–21
   year: 2023
-  type: Application
   fields: [Molecular Biology]
   links: { DOI: "https://doi.org/10.1016/j.matbio.2023.05.001" }

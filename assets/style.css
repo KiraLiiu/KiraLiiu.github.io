@@ -21,6 +21,7 @@
   --f-bioinfo: light-dark(#2f6a73, #96d0d8);
   --f-epi: light-dark(#8a6420, #e2c07c);
   --f-bio: light-dark(#6e4a75, #d0aad6);
+  --f-stat: light-dark(#5a5f6e, #b9bdca);
   --side-line: rgb(255 255 255 / .16);
   --sidebar-w: 21rem;
   --gutter: max(3.5rem, calc((100% - 52rem) / 2));
@@ -145,27 +146,31 @@ main h3 { margin: 0 0 1.75rem; font-size: 1.75rem; font-weight: 400; }
 .news li { break-inside: avoid; display: grid; grid-template-columns: 5.25rem 1fr; gap: .5rem; margin-bottom: 1rem; }
 
 /* Research */
-.tracks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
-.track { padding: 1.5rem 1.6rem; border: 1px solid var(--hair); border-radius: .6rem; background: var(--surface); }
-.track-head { display: flex; align-items: center; gap: .75rem; margin: 0 0 1rem; font: italic 400 1.2rem var(--serif); color: var(--heading); }
-.track ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .9rem; }
-.track li { display: grid; grid-template-columns: .9rem 1fr; gap: .5rem; font-size: .9rem; line-height: 1.55; color: var(--muted); }
-.track strong { display: block; font-weight: 500; color: var(--text); }
-.track a { white-space: nowrap; }
-.dot { width: .55rem; height: .55rem; margin-top: .45rem; border-radius: 50%; background: var(--c); }
+.interests { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; margin-top: 2.25rem; }
+.interests > div { padding: 1.4rem 1.6rem; border: 1px solid var(--hair); border-radius: .6rem; background: var(--surface); }
+.interests h4 { margin: 0 0 .8rem; font: italic 400 1.2rem var(--serif); color: var(--heading); }
+.interests ul { margin: 0; padding: 0; list-style: none; display: grid; gap: .45rem; }
+.interests li { padding-left: 1.1rem; position: relative; }
+.interests li::before { content: ""; position: absolute; left: 0; top: .7em; width: .45rem; height: .45rem; border-radius: 50%; background: var(--accent); }
+.contact { display: flex; flex-wrap: wrap; gap: .6rem; margin: .5rem 0 0; }
+.pill { display: inline-flex; align-items: center; gap: .5rem; padding: .5rem 1.1rem; border: 1px solid var(--line); border-radius: 999px; font-size: .85rem; font-weight: 500; color: var(--heading); text-decoration: none; transition: background .3s, color .3s, border-color .3s, transform .3s; }
+.pill:hover { background: var(--heading); border-color: var(--heading); color: var(--bg); text-decoration: none; transform: translateY(-2px); }
+.map { height: 26rem; border-radius: .6rem; overflow: hidden; border: 1px solid var(--hair); background: var(--surface); z-index: 0; }
+.map .leaflet-popup-content { font: 500 .85rem var(--sans); }
+.confs > li { display: grid; grid-template-columns: 6rem minmax(0, 1fr); gap: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--hair); }
 .tags { display: flex; flex-wrap: wrap; gap: .35rem; margin: 0 0 .5rem; }
 .tag { display: inline-block; padding: .1rem .5rem; border-radius: 3px; font-size: .66rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; line-height: 1.6; color: var(--c); background: color-mix(in srgb, var(--c) 13%, transparent); }
-.tag.type-method { color: var(--bg); background: var(--heading); }
-.tag.type-application { color: var(--heading); background: none; box-shadow: inset 0 0 0 1px var(--heading); }
 .tag { font-family: var(--sans); font-style: normal; }
 .tag.role { color: #fff; background: var(--accent); }
 .tag.role-first-author { color: var(--accent-ink); background: none; box-shadow: inset 0 0 0 1px var(--accent); }
+.tag.kind { color: var(--accent-ink); background: color-mix(in srgb, var(--accent) 16%, transparent); }
 .f-machine-learning { --c: var(--f-ml); }
 .f-clinical-informatics { --c: var(--f-clin); }
 .f-multi-omics { --c: var(--f-omics); }
 .f-bioinformatics { --c: var(--f-bioinfo); }
 .f-epidemiology { --c: var(--f-epi); }
 .f-molecular-biology { --c: var(--f-bio); }
+.f-statistical-modeling { --c: var(--f-stat); }
 .year-group { display: grid; grid-template-columns: 8rem minmax(0, 1fr); gap: 2rem; padding: 2rem 0; border-top: 1px solid var(--hair); }
 .yr { margin: 0; position: sticky; top: 2rem; align-self: start; font: italic 300 2.25rem/1 var(--serif); color: var(--line); }
 .pubs { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.9rem; }
@@ -302,7 +307,7 @@ main h3 { margin: 0 0 1.75rem; font-size: 1.75rem; font-weight: 400; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1100px) {
-  .tracks { grid-template-columns: 1fr; }
+  .interests, .confs > li { grid-template-columns: 1fr; gap: .5rem; }
 }
 @media (max-width: 900px) {
   :root { --gutter: 1.5rem; }

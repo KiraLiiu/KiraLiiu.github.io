@@ -6,7 +6,21 @@ const $$ = (s) => [...document.querySelectorAll(s)]
 $('.theme').addEventListener('click', () => {
   root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark'
   try { localStorage.setItem('theme', root.dataset.theme) } catch {}
+  dispatchEvent(new Event('themechange'))
 })
+
+// Travel map (home page): places come from _data/places.yml
+if ($('#map') && window.L && window.places?.length) {
+  const tileUrl = () => `https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_${root.dataset.theme === 'dark' ? 'Dark' : 'Light'}_Gray_Base/MapServer/tile/{z}/{y}/{x}`
+  const map = L.map('map', { scrollWheelZoom: false, worldCopyJump: true })
+  const tiles = L.tileLayer(tileUrl(), { maxZoom: 16, attribution: 'Tiles &copy; Esri' }).addTo(map)
+  const accent = getComputedStyle(root).getPropertyValue('--accent').trim() || '#e08e6d'
+  const pts = window.places.map((p) => L.circleMarker([p.lat, p.lng], {
+    radius: 7, weight: 2, color: '#fff', fillColor: accent, fillOpacity: 0.95,
+  }).bindPopup(p.name).addTo(map))
+  map.fitBounds(L.featureGroup(pts).getBounds(), { padding: [40, 40], maxZoom: 5 })
+  addEventListener('themechange', () => tiles.setUrl(tileUrl()))
+}
 
 // Fade items up as they enter the viewport, staggered among siblings
 const io = new IntersectionObserver((entries) => entries.forEach((e) => {

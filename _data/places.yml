@@ -1,0 +1,6 @@
+# Places for the travel map on the home page. Find coordinates by right-clicking a spot in Google Maps.
+- { name: "Gainesville, FL", lat: 29.6516, lng: -82.3248 }
+- { name: "Evanston, IL", lat: 42.0451, lng: -87.6877 }
+- { name: "Madison, WI", lat: 43.0731, lng: -89.4012 }
+- { name: "Notre Dame, IN", lat: 41.7052, lng: -86.2353 }
+- { name: "Shanghai, China", lat: 31.2304, lng: 121.4737 }

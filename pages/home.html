@@ -4,26 +4,30 @@ title: Home
 permalink: /
 ---
 <section>
-  <p class="eyebrow">Biomedical AI · Multi-omics · Clinical Data</p>
+  <p class="eyebrow">Biomedical AI · Multi-omics · Health Data Science</p>
   <h2 class="display">Hello, I'm Kira.</h2>
   <div class="prose">
-    <p class="lede">I'm Jinwen (Kira) Liu, a Ph.D. student in Biomedical Informatics at the <a href="https://hobi.med.ufl.edu/">Department of Health Outcomes and Biomedical Informatics</a>, University of Florida. I work at the intersection of <strong>biomedical AI</strong> and <strong>precision medicine</strong>.</p>
-    <p>I develop robust, interpretable computational methods, such as <strong>density-peak clustering</strong> and <strong>longitudinal multi-omics models</strong>, and apply them from the molecule to the patient: <strong>deep phenotyping from EHR</strong>, and how diet and aging leave lasting <strong>metabolic memory</strong>.</p>
-    <p>Questions that excite me:</p>
-    <ol class="questions">
-      <li>How can clinical notes and structured EHR data be combined to flag risk earlier and more reliably?</li>
-      <li>How do we find disease patterns in noisy, high-dimensional data that are both robust and interpretable?</li>
-      <li>How do diet and aging leave lasting molecular imprints, and what can multi-omics tell us about them?</li>
-    </ol>
-    <p>Beyond research, this site is also home to my <a href="{{ '/gallery/' | relative_url }}">gallery</a>, <a href="{{ '/music/' | relative_url }}">music</a>, and <a href="{{ '/community/' | relative_url }}">community</a> work.</p>
+    <p class="lede">I'm Jinwen (Kira) Liu, a Ph.D. student in Biomedical Informatics at the <a href="https://hobi.med.ufl.edu/">Department of Health Outcomes and Biomedical Informatics</a>, University of Florida.</p>
+    <p>My research centers on <strong>robust, interpretable computational methods</strong> for understanding health from molecules to populations. I'm broadly interested in machine learning for biomedical data, clinical informatics, multi-omics integration, and statistical modeling, with applications in <strong>mental health and substance use</strong>, <strong>metabolism and aging</strong>, and <strong>LGBTQ+ health equity</strong>.</p>
+    <p>Previously, I've been fortunate to work with Luis A. Nunes Amaral at Northwestern University, Feifan Liu at UMass Chan Medical School, John Denu, Dudley Lamming, and Judith Simcox at the University of Wisconsin–Madison, Jeremiah Zartman at the University of Notre Dame, Geng Zong at the Shanghai Institute of Nutrition and Health, Xiang Gao at Fudan University, and Xiaolin Hu at Shanghai Jiao Tong University.</p>
   </div>
+  <p class="contact">{% include contact.html class="pill" labels=true %}</p>
 </section>
 
 <section>
   <h3>Education</h3>
   <ul class="rows">
     {% for e in site.data.cv.education %}
-    <li class="reveal"><time>{{ e.when }}</time><div><strong>{{ e.title }}</strong><span>{{ e.org }}</span>{% if e.detail %}<span class="detail">{{ e.detail }}</span>{% endif %}</div></li>
+    <li class="reveal"><time>{{ e.when }}</time><div><strong>{{ e.title }}</strong><span>{{ e.org }}</span></div></li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section>
+  <h3>Experience</h3>
+  <ul class="rows">
+    {% for e in site.data.cv.experience %}
+    <li class="reveal"><time>{{ e.when }}</time><div><strong>{{ e.title }}</strong><span>{{ e.org }}</span></div></li>
     {% endfor %}
   </ul>
 </section>
@@ -47,3 +51,14 @@ permalink: /
   </details>
   {% endif %}
 </section>
+
+{% if site.data.places %}
+<section>
+  <h3>Places I've been</h3>
+  <p class="sub">I love traveling, and it's a wonderful life experience to visit these beautiful places.</p>
+  <div id="map" class="map" role="img" aria-label="Map of places I've visited"></div>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>window.places = {{ site.data.places | jsonify }}</script>
+</section>
+{% endif %}
