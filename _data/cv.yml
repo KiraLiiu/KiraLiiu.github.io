@@ -17,7 +17,7 @@ education:
     detail: "Advisor: Xiang Gao"
 
 experience:
-  - when: Jun 2025 –
+  - when: Jun 2025 – Jun 2026
     title: Graduate Research Assistant, Amaral Lab
     org: Engineering Sciences & Applied Mathematics, Northwestern University
     detail: Robust, interpretable modeling of disease patterns from high-dimensional EHR data
