@@ -1,0 +1,10 @@
+# Talks I give outside my lab: academic exchange and outreach. Newest first.
+# `upcoming: true` adds an "Upcoming" label. Your name (as in `me`) gets underlined.
+# Optional: fields, video, thumb, links.
+- when: "2026"
+  event: WPATH 2026
+  title: "Minority Stress Pathways and Mental Health Outcomes: A National Survey of Transgender and Gender-Diverse Individuals in China"
+  authors: Kira Liu (presenter), Zheyu Hu, Shequilla Xue, Xenia Jiang (co-presenters)
+  me: Kira Liu
+  upcoming: true
+  fields: [Epidemiology, Statistical Modeling]

@@ -1,19 +1,20 @@
 /* Palette & type: Hugo Apéro · Layout: HTML5 UP Read Only */
 :root {
   color-scheme: light dark;
-  --bg: light-dark(#f3f2ee, #18181d);
-  --surface: light-dark(#faf9f6, #202027);
+  /* Each page sets --hue (front matter `hue:`); every brand color is derived from it. */
+  --bg: light-dark(oklch(96.6% .006 var(--hue)), oklch(19% .012 var(--hue)));
+  --surface: light-dark(oklch(98.6% .004 var(--hue)), oklch(23% .014 var(--hue)));
   --text: light-dark(#404040, #d4d4cf);
   --muted: light-dark(#7b7b78, #9a9a96);
-  --heading: light-dark(#3f5596, #a9b8e8);
-  --link: light-dark(#2c2857, #c8d1f2);
-  --accent: light-dark(#e08e6d, #e8a084);
-  --accent-ink: light-dark(#c46f4f, #eba98c);
-  --line: light-dark(#b4c0dd, #3b4566);
+  --heading: light-dark(oklch(46% .09 var(--hue)), oklch(80% .07 var(--hue)));
+  --link: light-dark(oklch(33% .08 var(--hue)), oklch(87% .05 var(--hue)));
+  --accent: light-dark(oklch(68% .09 var(--hue)), oklch(72% .09 var(--hue)));
+  --accent-ink: light-dark(oklch(52% .1 var(--hue)), oklch(80% .08 var(--hue)));
+  --line: light-dark(oklch(82% .035 var(--hue)), oklch(38% .045 var(--hue)));
   --hair: color-mix(in srgb, var(--line) 50%, transparent);
-  --rule: light-dark(#e7e5df, #222229);
-  --side: light-dark(#6f86c2, #2a3152);
-  --side-soft: light-dark(#e6ebf7, #b9c1e6);
+  --rule: light-dark(oklch(91.5% .008 var(--hue)), oklch(22% .012 var(--hue)));
+  --side: light-dark(oklch(62% .085 var(--hue)), oklch(31% .06 var(--hue)));
+  --side-soft: light-dark(oklch(94% .025 var(--hue)), oklch(83% .04 var(--hue)));
   /* field colors (labels, dots, filter chips) */
   --f-ml: light-dark(#3c4a8a, #a9b5ea);
   --f-clin: light-dark(#9a4a43, #eba9a2);
@@ -79,12 +80,11 @@ time { font: .75rem/2.1 var(--mono); color: var(--muted); }
   width: 8rem; aspect-ratio: 1;
   margin: 0 auto 1.75rem;
   border-radius: 50%; overflow: hidden;
-  box-shadow: 0 0 0 4px var(--accent);
   background: color-mix(in srgb, #fff 18%, var(--side));
   font: 300 2.75rem var(--serif);
 }
 .avatar img { width: 100%; height: 100%; object-fit: cover; }
-.sidebar h1 { margin: 0; font-size: 2rem; }
+.sidebar h1 { margin: 0; font-size: 1.75rem; text-wrap: balance; }
 .sidebar h1 a { color: #fff; text-decoration: none; }
 .tagline { margin: .75rem 0 0; font: italic 300 1rem/1.55 var(--serif); color: var(--side-soft); text-wrap: balance; }
 .intro .avatar { animation: ken-burns 1s ease-out both; }
@@ -162,7 +162,7 @@ main h3 { margin: 0 0 1.75rem; font-size: 1.75rem; font-weight: 400; }
 .tags { display: flex; flex-wrap: wrap; gap: .35rem; margin: 0 0 .5rem; }
 .tag { display: inline-block; padding: .1rem .5rem; border-radius: 3px; font-size: .66rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; line-height: 1.6; color: var(--c); background: color-mix(in srgb, var(--c) 13%, transparent); }
 .tag { font-family: var(--sans); font-style: normal; }
-.tag.role { color: #fff; background: var(--accent); }
+.tag.role { color: #fff; background: var(--accent-ink); }
 .tag.role-first-author { color: var(--accent-ink); background: none; box-shadow: inset 0 0 0 1px var(--accent); }
 .tag.kind { color: var(--accent-ink); background: color-mix(in srgb, var(--accent) 16%, transparent); }
 .f-machine-learning { --c: var(--f-ml); }

@@ -2,7 +2,7 @@
 # fields: any of Machine Learning, Clinical Informatics, Multi-omics, Bioinformatics, Epidemiology, Statistical Modeling, Molecular Biology
 # role:   optional highlight, e.g. "Co-first author" or "First author"
 # Optional: status, venue, award, links. † co-first author, * corresponding author.
-# Conference talks & posters live in _data/conferences.yml.
+# Talks live in _data/talks.yml.
 
 - title: "reDPC: Robust Clustering through Recurrent Density Peaks"
   authors: Liu, J., Xu, F., Amaral, L.*
@@ -24,6 +24,14 @@
   year: 2026
   fields: [Multi-omics, Bioinformatics]
   role: First author
+
+- title: Robust and Interpretable Modeling of Dynamic Metabolic States from Longitudinal Multi-Omics under Dietary Perturbation and Aging
+  authors: Liu, J., Lamming, D., Denu, J.
+  venue: ISMB 2026 · Poster 1462
+  year: 2026
+  fields: [Multi-omics, Machine Learning]
+  role: First author
+  links: { Code: "https://github.com/KiraLiiu/MOFA_analysis_pipeline" }
 
 - title: Gαq Controls Organ Size and Developmental Timing in Drosophila
   authors: Unger, M., Velagala, V., Soundarrajan, D., Gazzo, D., Kumar, N., Flores, M., Liu, J., Li, J., Zartman, J.*

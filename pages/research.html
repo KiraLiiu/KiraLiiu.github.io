@@ -2,6 +2,7 @@
 layout: default
 title: Research
 permalink: /research/
+hue: 160
 ---
 {% capture me %}<span class="me">{{ site.author }}</span>{% endcapture %}
 {% assign pubs = site.data.publications %}
@@ -37,7 +38,7 @@ permalink: /research/
 
 <section>
   <h3>Publications</h3>
-  <p class="note">† co-first author · * corresponding author · Talks &amp; posters are under <a href="{{ '/conferences/' | relative_url }}">Conferences</a>{% if site.scholar %} · <a href="{{ site.scholar }}">Google Scholar</a>{% endif %}</p>
+  <p class="note">† co-first author · * corresponding author{% if site.scholar %} · <a href="{{ site.scholar }}">Google Scholar</a>{% endif %}</p>
   <div class="filters" role="group" aria-label="Filter publications by field">
     <button type="button" data-cat="All" aria-pressed="true">All</button>
     {% for f in fields %}<button type="button" class="f-{{ f | slugify }}" data-cat="{{ f }}" aria-pressed="false">{{ f }}</button>{% endfor %}
@@ -64,3 +65,27 @@ permalink: /research/
   </div>
   {% endfor %}
 </section>
+
+{% if site.data.talks.size > 0 %}
+<section id="talks">
+  <h3>Talks</h3>
+  <p class="note">Sharing my work beyond the lab: academic exchange and conversations with the wider community.</p>
+  <ul class="pubs confs">
+    {% for t in site.data.talks %}
+    {% capture tme %}<span class="me">{{ t.me }}</span>{% endcapture %}
+    <li class="pub reveal">
+      <time>{{ t.when }}</time>
+      <div>
+        <p class="tags">
+          {% if t.upcoming %}<span class="tag kind">Upcoming</span>{% endif %}
+          {% for f in t.fields %}<span class="tag f-{{ f | slugify }}">{{ f }}</span>{% endfor %}
+        </p>
+        <h4>{{ t.title }}</h4>
+        <p class="authors">{% if t.me %}{{ t.authors | replace: t.me, tme }}{% else %}{{ t.authors }}{% endif %} · <em>{{ t.event }}</em></p>
+        {% if t.video %}<p class="links"><a href="{{ t.video }}">Recording</a>{% for l in t.links %}<a href="{{ l[1] }}">{{ l[0] }}</a>{% endfor %}</p>{% elsif t.links %}<p class="links">{% for l in t.links %}<a href="{{ l[1] }}">{{ l[0] }}</a>{% endfor %}</p>{% endif %}
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}

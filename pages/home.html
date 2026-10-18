@@ -2,14 +2,15 @@
 layout: default
 title: Home
 permalink: /
+hue: 265
 ---
 <section>
   <p class="eyebrow">Biomedical AI · Multi-omics · Health Data Science</p>
   <h2 class="display">Hello, I'm Kira.</h2>
   <div class="prose">
-    <p class="lede">I'm Jinwen (Kira) Liu, a Ph.D. student in Biomedical Informatics at the <a href="https://hobi.med.ufl.edu/">Department of Health Outcomes and Biomedical Informatics</a>, University of Florida.</p>
-    <p>My research centers on <strong>robust, interpretable computational methods</strong> for understanding health from molecules to populations. I'm broadly interested in machine learning for biomedical data, clinical informatics, multi-omics integration, and statistical modeling, with applications in <strong>mental health and substance use</strong>, <strong>metabolism and aging</strong>, and <strong>LGBTQ+ health equity</strong>.</p>
-    <p>Previously, I've been fortunate to work with Luis A. Nunes Amaral at Northwestern University, Feifan Liu at UMass Chan Medical School, John Denu, Dudley Lamming, and Judith Simcox at the University of Wisconsin–Madison, Jeremiah Zartman at the University of Notre Dame, Geng Zong at the Shanghai Institute of Nutrition and Health, Xiang Gao at Fudan University, and Xiaolin Hu at Shanghai Jiao Tong University.</p>
+    <p class="lede">I'm a Ph.D. student in Biomedical Informatics at the <a href="https://hobi.med.ufl.edu/">Department of Health Outcomes and Biomedical Informatics</a>, University of Florida, working with <a href="https://hobi.med.ufl.edu/profile/yin-rui/">Dr. Rui Yin</a>.</p>
+    <p>My research centers on <strong>robust and interpretable AI methods</strong> for understanding health from molecules to populations. I'm broadly interested in machine learning and natural language processing for genomics, multi-omics, and electronic health records, with applications in <strong>metabolism</strong>, <strong>aging</strong>, <strong>mental health</strong>, and <strong>health equity of minority populations</strong>.</p>
+    <p>Previously, I've been fortunate to work with <a href="https://amaral.northwestern.edu/">Dr. Luis A. Nunes Amaral</a> at Northwestern University, <a href="https://www.umassmed.edu/ai4health/">Dr. Feifan Liu</a> at UMass Chan Medical School, <a href="https://denulab.discovery.wisc.edu/">Dr. John Denu</a> at the Wisconsin Institute for Discovery (UW–Madison), Dr. Xiang Gao at Fudan University, and Dr. Xiaolin Hu at Shanghai Jiao Tong University (SJTU).</p>
   </div>
   <p class="contact">{% include contact.html class="pill" labels=true %}</p>
 </section>
@@ -56,7 +57,7 @@ permalink: /
 <section>
   <h3>Places I've been</h3>
   {% assign countries = site.data.places | map: "country" | uniq %}
-  <p class="sub">I love traveling, and it's a wonderful life experience to visit these beautiful places. <span class="count">{{ site.data.places.size }} places · {{ countries.size }} countries &amp; regions</span></p>
+  <p class="sub">I love traveling :) <span class="count">{{ site.data.places.size }} places · {{ countries.size }} countries &amp; regions</span></p>
   <div id="map" class="map" role="img" aria-label="Map of places I've visited"></div>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>

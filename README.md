@@ -9,11 +9,12 @@ Jekyll site, served by GitHub Pages at https://kiraliiu.github.io.
 | 换头像 | 放一张 `images/avatar.jpg`（或 .png），删掉就恢复成首字母 |
 | 加作品 | 把图片拖进 `images/gallery/<分类>/`（分类可以是地点，如 `Japan/`），文件夹名就是分类，文件名就是标题：`2025-Morning-Light.jpg` → *Morning Light · 2025* |
 | 放 CV 下载 | 把 PDF 命名为 `cv.pdf`（或 `cv-clinical.pdf` 等）放进 `files/`，CV 页自动出现下载按钮 |
-| 新闻 / 论文 / 会议 / 音乐 / 履历 | 改 `_data/` 里对应的 `.yml` 文件（会议是 `conferences.yml`）|
+| 新闻 / 论文 / 报告 / 音乐 / 履历 | 改 `_data/` 里对应的 `.yml` 文件（报告是 `talks.yml`，显示在 Research 页）|
 | 地图上加一个去过的地方 | 在 `_data/places.yml` 加一行：名字 + 经纬度（Google Maps 右键可复制） |
 | 首页按钮（Email / Scholar / LinkedIn / GitHub） | `_config.yml` 里填链接，空着就不显示 |
 | 名字、简介、链接、导航 | `_config.yml` |
 | 页面正文（首页简介、研究方向等） | `pages/` 里对应的 `.html` |
+| 换某一页的主题色 | 该页 `pages/*.html` 开头的 `hue:`（0–360 的色相，比如 265 长春花蓝、160 鼠尾草绿） |
 
 图片请用 jpg / png / webp（iPhone 的 HEIC 浏览器显示不了）。
 
@@ -23,7 +24,7 @@ Jekyll site, served by GitHub Pages at https://kiraliiu.github.io.
 
 ```
 _config.yml    站点信息、链接、导航
-_data/         内容清单：news, publications, conferences, places, music, cv
+_data/         内容清单：news, publications, talks, places, music, cv
 pages/         每个页面一个文件
 images/        头像 + gallery/
 files/         要公开的 PDF
