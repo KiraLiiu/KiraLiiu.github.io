@@ -1,0 +1,202 @@
+<style>
+  .pw { --t0: light-dark(#eceeec, #2f3330); --t2: light-dark(#fdeedd, #47392a); --t3: light-dark(#e3f0f6, #26404a); --t4: light-dark(#efe8f7, #3c3249);
+        --pos: light-dark(#b0622b, #e9a774); --neg: light-dark(#2a7468, #7fcbbd); --node-ink: light-dark(#1d2b33, #e6e8e6); }
+  .pw-bar { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .75rem; margin: 1.25rem 0 .75rem; font-size: .85rem; }
+  .pw-bar select, .pw-bar button { font: inherit; color: var(--text); background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: .25rem .6rem; cursor: pointer; }
+  .pw-bar button[aria-pressed="false"] { color: var(--muted); border-style: dashed; }
+  .pw-presets { display: flex; flex-wrap: wrap; gap: .4rem; margin: 1.25rem 0 0; font-size: .82rem; }
+  .pw-presets button { font: inherit; text-align: left; color: var(--text); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: .35rem .7rem; cursor: pointer; }
+  .pw-presets button b { color: var(--accent-ink); font-weight: 600; margin-right: .35rem; }
+  .pw-presets button.weak { border-style: dashed; }
+  .pw-presets button[aria-pressed="true"] { border-color: var(--heading); box-shadow: inset 0 0 0 1px var(--heading); }
+  .pw-tag { display: inline-block; margin-right: .55rem; padding: .05rem .45rem; font-size: .7rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; vertical-align: .12em; color: var(--accent-ink); border: 1px solid currentColor; border-radius: 4px; }
+  .pw-chips { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; margin: .35rem 0; font-size: .8rem; }
+  .pw-chips > span { color: var(--muted); min-width: 4.5rem; }
+  .pw-chips button { font: inherit; color: var(--muted); background: none; border: 1px dashed var(--line); border-radius: 99px; padding: .15rem .6rem; cursor: pointer; }
+  .pw-chips button[aria-pressed="true"] { color: var(--node-ink); border-style: solid; }
+  .pw-chips.d0 button[aria-pressed="true"] { background: var(--t0); }
+  .pw-chips.d2 button[aria-pressed="true"] { background: var(--t2); }
+  .pw-chips.d3 button[aria-pressed="true"] { background: var(--t3); }
+  .pw-frame { overflow-x: auto; contain: inline-size; margin-top: .75rem; background: var(--surface); border: 1px solid var(--hair); border-radius: 10px; }
+  .pw-frame svg { display: block; margin: 0 auto; font-family: var(--sans); }
+  .pw-detail { min-height: 1.5rem; margin: .6rem 0 0; font-size: .85rem; color: var(--muted); }
+  .pw-detail b { color: var(--heading); font-weight: 600; }
+  .pw [data-node], .pw [data-edge] { cursor: pointer; outline: none; }
+  .pw [data-node]:focus-visible rect { stroke-width: 3; }
+</style>
+
+<div class="pw">
+  <div class="pw-presets" id="pw-presets"></div>
+  <div class="pw-bar">
+    <select id="pw-outcome" aria-label="Outcome"></select>
+    <button type="button" id="pw-all">All</button>
+    <button type="button" id="pw-none">Clear</button>
+    <button type="button" id="pw-relax" aria-pressed="true" title="Show dashed links that only some of the analysis methods support">Tentative links</button>
+  </div>
+  <div class="pw-chips d0" id="pw-d0"><span>Demographic</span></div>
+  <div class="pw-chips d2" id="pw-d2"><span>Distal</span></div>
+  <div class="pw-chips d3" id="pw-d3"><span>Proximal</span></div>
+  <div class="pw-frame"><svg id="pw-svg" role="img" aria-label="Bayesian network paths"></svg></div>
+  <p class="pw-detail" id="pw-detail" aria-live="polite"></p>
+</div>
+
+<script id="pw-data" type="application/json">{{ site.data.pathways | jsonify }}</script>
+<script>
+(() => {
+  const D = JSON.parse(document.getElementById('pw-data').textContent), $ = id => document.getElementById(id);
+  const L = {
+    depression_score: 'Depression', anxiety_score: 'Anxiety', suicide_ideation_q97: 'Suicidal ideation', suicide_behavior_q104: 'Suicidal behavior',
+    nssi_history: 'Self-harm (NSSI)', panic_q132: 'Panic', avoid_q133: 'Avoidance',
+    age: 'Age', region: 'Region', ethnic_minority: 'Ethnic minority', education_level: 'Education', is_female: 'Female (coded)',
+    religion_any: 'Religious', gender_identity_group: 'Gender identity', sexual_orientation_group: 'Sexual orientation',
+    family_rejection_proxy: 'Family rejection', partner_violence: 'Partner violence', online_discrimination_exposure: 'Online discrimination',
+    public_discrimination_violence: 'Public discrimination', restroom_harassment: 'Restroom harassment', security_check_discrimination: 'Security-check discrimination',
+    employment_discrimination: 'Employment discrimination', school_staff_discrimination: 'School staff discrimination', school_peer_bullying: 'Peer bullying',
+    healthcare_discrimination: 'Healthcare discrimination', document_change_barrier: 'ID document barriers', prox_conceal: 'Identity concealment',
+    prox_gender_expression_constraint: 'Constrained expression', prox_restroom_avoidance: 'Restroom avoidance', prox_internalized_negative_attitude: 'Internalized stigma',
+    parent_trust: 'Trust in parents', pronounname_index: 'Name & pronoun respect', disclosure_lgbtq_friends: 'Out to LGBTQ friends',
+    support_index_parents: 'Parent support', support_index_partner: 'Partner support', support_index_child: 'Support from children', policy_impact_mean: 'Perceived policy impact'
+  };
+  const name = n => L[n] || n, E = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const sign = x => x == null ? '—' : (x >= 0 ? '+' : '') + x.toFixed(2);
+  const lines = (n, x) => { // long labels wrap at the space nearest the middle
+    const t = name(n); if (t.length <= 18) return E(t);
+    const i = [...t.matchAll(/ /g)].map(m => m.index).sort((a, b) => Math.abs(a - t.length / 2) - Math.abs(b - t.length / 2))[0];
+    return `<tspan x="${x}" dy="-.55em">${E(t.slice(0, i))}</tspan><tspan x="${x}" dy="1.15em">${E(t.slice(i + 1))}</tspan>`;
+  };
+  const bandName = { 0: 'Demographic', 2: 'Distal', 3: 'Proximal', 4: 'Outcome' };
+  const source = { tier: 'theory order', vote: 'algorithm vote', meek: 'propagated', completion: 'not identified', mixed: 'differs across outcomes' };
+  const BW = 168, BH = 44, COL = 290, ROW = 72, TOP = 70, PAD = 36, SCALE = .78;
+  const vars = Object.keys(D.tiers).sort((a, b) => name(a).localeCompare(name(b)));
+  const ALL = Object.keys(D.outcomes);
+  let o, on, focus = null, relax = true;
+  const links = x => D.outcomes[x].edges.filter(e => relax || !e.weak);
+  const outs = () => o === 'all' ? ALL : [o];
+
+  // Preset pathways = the project's main findings.
+  const PRESETS = [
+    { label: 'Bullying → concealment → stigma → anxiety', finding: 'Peer bullying is tied to anxiety both directly and through a chain: more online discrimination, more identity concealment, then more internalized stigma.', o: 'anxiety_score', v: ['school_peer_bullying', 'online_discrimination_exposure', 'prox_conceal', 'prox_internalized_negative_attitude'] },
+    { label: 'Online discrimination → self-harm', finding: 'Online discrimination is the one stressor directly linked to a history of self-harm, and peer bullying feeds into it.', o: 'nssi_history', v: ['school_peer_bullying', 'online_discrimination_exposure'] },
+    { label: 'Shared stress chain, all outcomes', finding: 'The same chain, from bullying to online discrimination to concealment to internalized stigma, appears in nearly every outcome’s network; with strong support it reaches only anxiety and self-harm directly.', o: 'all', v: ['school_peer_bullying', 'online_discrimination_exposure', 'prox_conceal', 'prox_internalized_negative_attitude'] },
+    { label: 'Family rejection → parent trust → suicidal ideation', finding: 'Tentatively, family rejection goes with lower trust in parents, and lower trust in parents with more suicidal ideation.', o: 'suicide_ideation_q97', v: ['family_rejection_proxy', 'parent_trust'], weak: true },
+    { label: 'Family rejection → internalized stigma → depression', finding: 'Tentatively, family rejection goes with more internalized stigma, which in turn goes with more depressive symptoms.', o: 'depression_score', v: ['family_rejection_proxy', 'prox_internalized_negative_attitude'], weak: true },
+    { label: 'Age → education → suicidal behavior', finding: 'For suicidal behavior, no stress measure holds up; the only direct link is education level, which is closely tied to age.', o: 'suicide_behavior_q104', v: ['age', 'education_level'] },
+  ];
+  let preset = null, told = false; // the description line changes only after a finding is clicked
+  const lede = document.getElementById('pw-lede'), intro = lede?.innerHTML; // the page's description line; a chosen finding replaces it
+  const apply = i => { const p = PRESETS[i]; preset = i; o = p.o; $('pw-outcome').value = o; if (p.weak) relax = true; on = new Set(p.v); focus = null; draw() };
+  // All outcomes: links between variables are merged (mean Δ, k of 7 networks); links into an outcome keep that model's Δ.
+  const network = () => {
+    if (o !== 'all') return links(o);
+    const merged = {}, direct = [];
+    for (const x of ALL) for (const e of links(x)) {
+      if (e.to === x) { direct.push(e); continue }
+      const m = merged[e.from + '|' + e.to] ??= { from: e.from, to: e.to, sum: 0, count: 0, source: e.source, weak: true, nominal: e.nominal };
+      m.sum += e.effect ?? 0; m.count++; m.weak &&= !!e.weak; if (m.source !== e.source) m.source = 'mixed';
+    }
+    // A pair can point opposite ways in different networks; keep the better-supported direction.
+    const better = (a, b) => !b || (a.weak !== b.weak ? !a.weak : a.count > b.count || (a.count === b.count && a.from < b.from));
+    const kept = Object.values(merged).filter(m => better(m, merged[m.to + '|' + m.from]));
+    return [...kept.map(m => ({ ...m, effect: m.sum / m.count })), ...direct];
+  };
+
+  function draw() {
+    const isOut = x => outs().includes(x), nodes = [...on, ...outs()], tier = x => isOut(x) ? 4 : D.tiers[x];
+    const edges = network().filter(e => nodes.includes(e.from) && nodes.includes(e.to));
+    // One column per band; the demographic band only when something is in it.
+    const bands = [0, 2, 3, 4].filter(t => t !== 0 || nodes.some(n => tier(n) === 0));
+    const col = Object.fromEntries(bands.map((t, i) => [t, i])), cols = bands.map(t => nodes.filter(n => tier(n) === t));
+    const memo = {}, depth = x => x in memo ? memo[x] : (memo[x] = 0, memo[x] = Math.max(0, ...edges.filter(e => e.to === x && tier(e.from) === tier(x)).map(e => depth(e.from) + 1)));
+    cols.forEach(c => c.sort((a, b) => depth(a) - depth(b) || name(a).localeCompare(name(b))));
+    const rows = Math.max(1, ...cols.map(c => c.length)), pos = {};
+    const place = () => cols.forEach((c, ci) => c.forEach((n, i) => pos[n] = { x: PAD + BW / 2 + ci * COL, y: TOP + ROW * (i + .5) + (rows - c.length) * ROW / 2, ci }));
+    place();
+    for (let pass = 0; pass < 4; pass++) { // barycentre ordering against neighbouring columns to cut crossings
+      cols.forEach(c => {
+        const bary = n => { const ys = edges.filter(e => (e.to === n && pos[e.from].ci !== pos[n].ci) || (e.from === n && pos[e.to].ci !== pos[n].ci)).map(e => pos[e.to === n ? e.from : e.to].y); return ys.length ? ys.reduce((a, b) => a + b) / ys.length : pos[n].y };
+        const key = Object.fromEntries(c.map(n => [n, bary(n)])); c.sort((a, b) => key[a] - key[b]);
+      });
+      place();
+    }
+    const W = PAD * 2 + BW + (bands.length - 1) * COL;
+    let H = TOP + rows * ROW + 14;
+    const lit = e => !focus || e.from === focus || e.to === focus, labels = edges.length <= 16, h = BW / 2;
+
+    let s = '', es = '';
+    s += `<defs>${['pos', 'neg'].map(k => `<marker id="pw-${k}" viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,1 L10,5 L0,9 L3,5 Z" fill="var(--${k})"/></marker>`).join('')}</defs>`;
+    let k = 0;
+    // Labels nudge up/down until they clear boxes and earlier labels.
+    const taken = Object.values(pos).map(p => [p.x - h, p.y - BH / 2, p.x + h, p.y + BH / 2]);
+    const free = (x0, y0, x1, y1) => taken.every(([a, b, c, d]) => x1 < a || x0 > c || y1 < b || y0 > d);
+    const settle = (lx, ly, w, anchor) => {
+      const x0 = anchor === 'start' ? lx : lx - w / 2;
+      for (const dy of [0, -15, 15, -30, 30, -45, 45]) if (free(x0, ly + dy - 8, x0 + w, ly + dy + 8)) { taken.push([x0, ly + dy - 8, x0 + w, ly + dy + 8]); return ly + dy }
+      return ly;
+    };
+    edges.forEach((e, i) => {
+      const a = pos[e.from], b = pos[e.to], sg = (e.effect ?? 0) >= 0 ? 'pos' : 'neg';
+      let d, lx, ly, anchor = 'middle';
+      if (a.ci === b.ci) { // same band: a small arc on the right of the column
+        const x0 = a.x + h, bulge = 22 + Math.min(70, Math.abs(b.y - a.y) * .22);
+        d = `M${x0},${a.y} C${x0 + bulge},${a.y} ${x0 + bulge},${b.y} ${x0 + 3},${b.y}`; lx = x0 + bulge * .75 + 5; ly = (a.y + b.y) / 2; anchor = 'start';
+      } else if (b.ci - a.ci > 1) { // skips a band: pass through the free gap in the crossed band(s) nearest a straight line
+        const mid = cols.slice(a.ci + 1, b.ci).flat(), want = (a.y + b.y) / 2;
+        const ok = y => mid.every(n => Math.abs(y - pos[n].y) > BH / 2 + 8);
+        const yg = [want, ...mid.flatMap(n => [pos[n].y - ROW / 2, pos[n].y + ROW / 2]), TOP - 12, TOP + rows * ROW + 8].filter(ok).sort((p, q) => Math.abs(p - want) - Math.abs(q - want))[0] + 9 * (k++ % 3 - 1);
+        const x0 = a.x + h, x1 = b.x - h - 3, g0 = x0 + COL - BW - 10, g1 = x1 - COL + BW + 10;
+        d = `M${x0},${a.y} C${(x0 + g0) / 2},${a.y} ${(x0 + g0) / 2},${yg} ${g0},${yg} L${g1},${yg} C${(g1 + x1) / 2},${yg} ${(g1 + x1) / 2},${b.y} ${x1},${b.y}`;
+        lx = (x0 + g0) / 2; ly = (a.y + yg) / 2; H = Math.max(H, yg + 22); // label in the open space beside the source
+      } else {
+        const x0 = a.x + h, x1 = b.x - h - 3, m = (x0 + x1) / 2;
+        d = `M${x0},${a.y} C${m},${a.y} ${m},${b.y} ${x1},${b.y}`; lx = m; ly = (a.y + b.y) / 2;
+      }
+      const text = sign(e.effect) + (e.count ? ` · ${e.count}/7` : ''), show = labels || (focus && lit(e));
+      if (show) ly = settle(lx, ly, text.length * 7.6, anchor);
+      es += `<g data-edge="${i}" opacity="${lit(e) ? 1 : .1}"><path d="${d}" fill="none" stroke="transparent" stroke-width="14"/>` +
+        `<path d="${d}" fill="none" stroke="var(--${sg})" stroke-width="${e.weak ? 1.2 : isOut(e.to) ? 2.2 : 1.7}" stroke-linecap="round"${e.weak ? ' stroke-dasharray="4 4" opacity=".6"' : ''} marker-end="url(#pw-${sg})"/>` +
+        (show ? `<text x="${lx}" y="${ly + 4.5}" text-anchor="${anchor}" fill="var(--${sg})" font-size="13" font-weight="${e.weak ? 500 : 650}" paint-order="stroke" stroke="var(--surface)" stroke-width="5" stroke-linejoin="round">${text}</text>` : '') + '</g>';
+    });
+    bands.forEach((t, i) => {
+      const x = PAD + BW / 2 + i * COL;
+      s += `<rect x="${x - h - 14}" y="${TOP - 26}" width="${BW + 28}" height="${H - TOP + 12}" rx="12" fill="var(--t${t})" opacity=".3"/>` +
+        `<text x="${x}" y="${TOP - 36}" text-anchor="middle" fill="var(--muted)" font-size="12" letter-spacing="1.6">${bandName[t].toUpperCase()}</text>`;
+    });
+    s += es;
+    for (const [n, p] of Object.entries(pos))
+      s += `<g data-node="${n}" role="button" tabindex="0" aria-label="${E(name(n))}" opacity="${!focus || n === focus || edges.some(e => lit(e) && (e.from === n || e.to === n)) ? 1 : .35}">` +
+        `<rect x="${p.x - h}" y="${p.y - BH / 2}" width="${BW}" height="${BH}" rx="10" fill="var(--t${tier(n)})" stroke="${n === focus ? 'var(--heading)' : 'var(--line)'}" stroke-width="${n === focus ? 2 : 1}"/>` +
+        `<text x="${p.x}" y="${p.y + 5}" text-anchor="middle" fill="var(--node-ink)" font-size="15"${isOut(n) ? ' font-weight="600"' : ''}>${lines(n, p.x)}</text></g>`;
+
+    const svg = $('pw-svg');
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.innerHTML = s;
+    svg.style.width = Math.max(W * .5, Math.min(W * SCALE, svg.parentNode.clientWidth - 2)) + 'px'; // shrink wide graphs to fit, then scroll
+    svg.querySelectorAll('[data-edge]').forEach(g => g.onclick = () => {
+      const e = edges[+g.dataset.edge];
+      $('pw-detail').innerHTML = `<b>${E(name(e.from))} → ${E(name(e.to))}</b> Δ ${sign(e.effect)}${e.count ? ` (mean, in ${e.count} of 7 outcome networks)` : ''} · direction: ${source[e.source]}${e.weak ? ' · tentative: only 2 of 4 methods agree' : ''}${e.nominal ? ' · categorical: compares two specific groups' : ''}`;
+    });
+    svg.querySelectorAll('[data-node]').forEach(g => {
+      const pick = () => { focus = focus === g.dataset.node ? null : g.dataset.node; draw() };
+      g.onclick = pick; g.onkeydown = ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); pick() } };
+    });
+    $('pw-detail').innerHTML = !on.size ? 'Pick a finding above, or add variables.'
+      : focus ? `<b>${E(name(focus))}</b> · click again to release` : `${o === 'all' ? '7 outcome networks' : 'N = ' + D.outcomes[o].n.toLocaleString()} · ${edges.length} links`;
+    document.querySelectorAll('.pw-chips button').forEach(b => b.setAttribute('aria-pressed', on.has(b.dataset.v)));
+    document.querySelectorAll('.pw-presets button').forEach((b, i) => b.setAttribute('aria-pressed', i === preset));
+    $('pw-relax').setAttribute('aria-pressed', relax);
+    if (lede) lede.innerHTML = preset == null || !told ? intro : `<span class="pw-tag">Finding ${preset + 1}</span>${E(PRESETS[preset].finding)}`;
+  }
+
+  for (const t of [0, 2, 3]) $('pw-d' + t).insertAdjacentHTML('beforeend', vars.filter(v => D.tiers[v] === t).map(v => `<button type="button" data-v="${v}" aria-pressed="false">${E(name(v))}</button>`).join(''));
+  document.querySelectorAll('.pw-chips button').forEach(b => b.onclick = () => { on.has(b.dataset.v) ? on.delete(b.dataset.v) : on.add(b.dataset.v); if (focus === b.dataset.v) focus = null; preset = null; draw() });
+  $('pw-outcome').innerHTML = '<option value="all">All outcomes</option>' + ALL.map(k => `<option value="${k}">${name(k)}</option>`).join('');
+  $('pw-presets').innerHTML = PRESETS.map((p, i) => `<button type="button"${p.weak ? ' class="weak" title="Relies on tentative links"' : ''}><b>${i + 1}</b>${E(p.label)}</button>`).join('');
+  document.querySelectorAll('.pw-presets button').forEach((b, i) => b.onclick = () => { told = true; apply(i) });
+  const reset = set => () => { on = set(); focus = null; preset = null; draw() };
+  $('pw-all').onclick = reset(() => new Set(vars));
+  $('pw-none').onclick = reset(() => new Set());
+  $('pw-relax').onclick = () => { relax = !relax; preset = null; draw() };
+  $('pw-outcome').onchange = () => { o = $('pw-outcome').value; focus = null; preset = null; draw() };
+  apply(0);
+})();
+</script>
+<p class="pw-detail"><b style="color:var(--pos)">Δ ≥ 0</b> · <b style="color:var(--neg)">Δ &lt; 0</b> · dashed = tentative link · click a box to trace</p>
