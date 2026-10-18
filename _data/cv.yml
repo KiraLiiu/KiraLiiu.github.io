@@ -44,19 +44,3 @@ experience:
     org: Center for Single-Cell Omics, Shanghai Jiao Tong University
     detail: "Multi-omics regulatory networks in lung injury; m6A regulation in tumors · Supervisor: Xiaolin Hu"
 
-honors:
-  - { when: "2024", title: "Outstanding Undergraduate Thesis Award, SJTU (top 5%)" }
-  - { when: "2024", title: "5th Life Science Competition of SJTU, 2nd Prize (top 10%)" }
-  - { when: "2023", title: "University Undergraduate Research Training Grant (top 20%)" }
-  - { when: "2023", title: "Academic Scholarship of SJTU (top 25%)" }
-  - { when: "2022", title: "National Undergraduate Research Training Grant (top 5% nationwide)" }
-  - { when: "2022", title: "Academic Scholarship of SJTU (top 25%)" }
-  - { when: "2021", title: "Merit Student of SJTU (top 5%)" }
-
-skills:
-  - { area: Programming, items: "Python (pandas, NumPy, scikit-learn), PyTorch, R (tidyverse), SQL, Linux/Bash, Git" }
-  - { area: Modeling & ML, items: "GLM, GEE, XGBoost, Random Forest, SVM, feature engineering, cross-validation, calibration" }
-  - { area: Bioinformatics, items: "RNA-seq (DESeq2, limma), scRNA-seq (Seurat), ATAC-/ChIP-seq, proteomics, metabolomics, GWAS" }
-  - { area: Multi-omics, items: "MOFA, GO/KEGG/GSEA enrichment, network analysis (ARACNe, WGCNA)" }
-  - { area: Workflow & cloud, items: "Nextflow, Snakemake, HPC, AWS, Docker, REDCap" }
-  - { area: Wet lab, items: "FPLC, immunofluorescence, Western blot, qPCR, Drosophila and mouse work, cell culture" }
