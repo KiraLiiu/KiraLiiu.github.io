@@ -5,6 +5,8 @@ playing:
   # detail (one line), groups [{ label, items [{ name, place, role }] }], note (italic aside)
   - title: Violin
     photos:
+      - src: /images/music/china-inn-2017.jpg
+        caption: CHINA INN Youth Music Festival closing concert, Laeiszhalle Hamburg, 2017 (photo © GDCV)
       - src: /images/music/jincai-2018.jpg
         caption: “Symphony Night” New Year Concert, Jincai Philharmonic Orchestra, 2018
       - src: /images/music/sjtu-gala-2021.jpg
@@ -38,8 +40,30 @@ playing:
       - src: /images/music/piano-derousse.jpg
         caption: Blanche Derousse, Jeune femme au piano (c. 1905)
     detail: Beginner — learning for the joy of it.
+background:
+  # Site-wide background music (sidebar ♪ button; track picked on the Music page). Files live in /audio/.
+  # Only recordings you may share: your own, public domain, or CC — keep the credit line for CC ones.
+  - title: Méditation
+    composer: Massenet
+    by: Bomsori Kim & Pallavi Mahidhara
+    src: /audio/meditation-thais.m4a
+    credit: CC BY 3.0 · Premiere Performances of Hong Kong
+    source: https://commons.wikimedia.org/wiki/File:Meditation_from_Thais_-_Bomsori_Kim.opus
+  - title: Introduction et Rondo capriccioso
+    composer: Saint-Saëns
+    by: Elias Goldstein · DePaul Symphony
+    src: /audio/rondo-goldstein.m4a
+    credit: CC BY-SA 2.0 · Al Goldstein collection
+    source: https://commons.wikimedia.org/wiki/File:Saint-Saens_-_Rondo-Capriccioso.ogg
 listening:
-  # - title: Album Title
-  #   artist: Artist Name
-  #   cover: /images/music/album.jpg
-  #   link: https://open.spotify.com/album/...
+  # Each: title, artist, cover, link, track (optional favourite, shown in italics)
+  - title: Violin on Stage
+    artist: Bomsori Kim · NFM Wrocław Philharmonic · Giancarlo Guerrero
+    cover: /images/music/violin-on-stage.jpg
+    link: https://music.apple.com/us/album/violin-on-stage/1565171405
+    track: Tchaikovsky — Nutcracker Pas de deux (arr. Michael Rot)
+  - title: Wieniawski, Saint-Saëns, Vieuxtemps & Sarasate
+    artist: Jascha Heifetz · London Philharmonic · John Barbirolli
+    cover: /images/music/heifetz-barbirolli.jpg
+    link: https://music.apple.com/us/album/wieniawski-saint-sa%C3%ABns-vieuxtemps-sarasate-works-for/1520073451
+    track: Saint-Saëns — Introduction et Rondo capriccioso (1935)

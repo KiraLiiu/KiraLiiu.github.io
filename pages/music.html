@@ -9,6 +9,13 @@ hue: 300
   <p class="eyebrow">Music</p>
   <h2>What I play &amp; what's on repeat</h2>
   <p class="sub">The other language I think in.</p>
+  {% if m.background %}
+  <div class="sets tracks" role="group" aria-label="Background music">
+    <span>Background music</span>
+    {% for t in m.background %}<button type="button" data-i="{{ forloop.index0 }}" aria-pressed="false">{{ t.title }}</button>{% endfor %}
+  </div>
+  <p class="credits">{% for t in m.background %}<a href="{{ t.source }}">{{ t.title }}</a> ({{ t.composer }}) — {{ t.by }}, {{ t.credit }}{% unless forloop.last %}<br>{% endunless %}{% endfor %}</p>
+  {% endif %}
   {% if m.playing %}
   <ul class="instruments">
     {% for p in m.playing %}
@@ -47,7 +54,7 @@ hue: 300
     <li class="reveal">
       <a href="{{ a.link | default: '#' }}">
         <div class="cover"{% if a.cover %} style="background-image: url('{{ a.cover | relative_url }}')"{% endif %}>{% unless a.cover %}{{ a.title | slice: 0 }}{% endunless %}</div>
-        <strong>{{ a.title }}</strong><span>{{ a.artist }}</span>
+        <strong>{{ a.title }}</strong><span>{{ a.artist }}</span>{% if a.track %}<span><em>♥ {{ a.track }}</em></span>{% endif %}
       </a>
     </li>
     {% endfor %}

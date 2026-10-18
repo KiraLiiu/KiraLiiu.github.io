@@ -114,6 +114,8 @@ time { font: .75rem/2.1 var(--mono); color: var(--muted); }
 }
 .icon-btn:hover { color: #fff; background: var(--side-line); transform: translateY(-2px); }
 [data-theme="dark"] .theme .moon, [data-theme="light"] .theme .sun { display: none; }
+.bgm[aria-pressed="true"] { color: #fff; background: var(--side-line); }
+.bgm[aria-pressed="false"] svg { opacity: .55; }
 
 /* ---------- Page structure ---------- */
 main section { padding: 5rem var(--gutter) 4.5rem; border-top: 6px solid var(--rule); }
@@ -289,6 +291,7 @@ h3 + .group { margin-top: 0; }
 .filters button[class^="f-"][aria-pressed="true"] { background: var(--c); border-color: var(--c); color: var(--bg); }
 .sets { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-bottom: 1.25rem; }
 .sets span { margin-right: .35rem; font-size: .72rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.credits { margin: 0 0 2.5rem; font-size: .78rem; line-height: 1.7; color: var(--muted); }
 .year-group[hidden] { display: none; }
 .gallery { columns: 3 10rem; column-gap: 1rem; }
 .gallery figure { position: relative; margin: 0 0 1rem; break-inside: avoid; border-radius: .5rem; overflow: hidden; }
@@ -394,3 +397,4 @@ h3 + .group { margin-top: 0; }
   .to-top { right: 1.25rem; }
 }
 
+main:focus { outline: none; }

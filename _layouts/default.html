@@ -43,6 +43,7 @@
     }
     let chosenSet; try { chosenSet = localStorage.getItem('backdropSet') } catch {}
     setBackdrop(chosenSet)
+    window.bgm = ({{ site.data.music.background | jsonify }} || []).map((t) => ({ ...t, src: '{{ site.baseurl }}' + t.src }))
   </script>
 
   <aside class="sidebar">
@@ -63,6 +64,11 @@
     </nav>
     <footer>
       {% include contact.html class="icon-btn" %}
+      {% if site.data.music.background %}
+      <button class="icon-btn bgm" type="button" aria-label="Background music" aria-pressed="false">
+        <svg class="i" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+      </button>
+      {% endif %}
       <button class="icon-btn theme" type="button" aria-label="Toggle dark mode">
         <svg class="i moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
         <svg class="i sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2m-7.07-17.07 1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
@@ -70,7 +76,7 @@
     </footer>
   </aside>
 
-  <main>
+  <main tabindex="-1">
     {{ content }}
     <footer class="site-footer">
       <p>© {{ site.time | date: "%Y" }} {{ site.title }}</p>
