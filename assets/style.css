@@ -167,7 +167,7 @@ main h3 { margin: 0 0 1.75rem; font-size: 1.75rem; font-weight: 400; }
 .tag { display: inline-block; padding: .1rem .5rem; border-radius: 3px; font-size: .66rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; line-height: 1.6; color: var(--c); background: color-mix(in srgb, var(--c) 13%, transparent); }
 .tag { font-family: var(--sans); font-style: normal; }
 .tag.role { color: #fff; background: var(--accent-ink); }
-.tag.role-first-author { color: var(--accent-ink); background: none; box-shadow: inset 0 0 0 1px var(--accent); }
+.tag.role-co-first-author { color: var(--accent-ink); background: none; box-shadow: inset 0 0 0 1px var(--accent); }
 .tag.kind { color: var(--accent-ink); background: color-mix(in srgb, var(--accent) 16%, transparent); }
 .f-machine-learning { --c: var(--f-ml); }
 .f-natural-language-processing { --c: var(--f-nlp); }
