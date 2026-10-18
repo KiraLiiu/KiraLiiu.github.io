@@ -225,6 +225,28 @@ main h3 { margin: 0 0 1.75rem; font-size: 1.75rem; font-weight: 400; }
 .rows strong, .rows div > a { display: block; font-weight: 500; color: var(--text); }
 .rows div > span { display: block; font-size: .9rem; color: var(--muted); }
 .rows .detail { font-size: .85rem; font-style: italic; }
+/* Music: instruments, name + photo on the left */
+.instruments { list-style: none; margin: 0; padding: 0; }
+.instruments > li { display: grid; grid-template-columns: 17rem minmax(0, 1fr); gap: 2.5rem; padding: 2rem 0; border-top: 1px solid var(--hair); }
+.instruments > li:last-child { border-bottom: 1px solid var(--hair); }
+main .instruments h3 { margin: 0 0 1rem; }
+.slides { display: grid; }
+.slides figure { grid-area: 1 / 1; margin: 0; opacity: 0; transition: opacity 1.2s; }
+.slides figure.on { opacity: 1; }
+/* Illustration only: no click-through, drag or long-press save */
+.slides img { display: block; width: 100%; height: auto; border-radius: 3px; pointer-events: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+.slides figure:not(:only-child) img { aspect-ratio: 3 / 2; object-fit: cover; }
+.slides.small { max-width: 9rem; }
+.slides figcaption { margin-top: .5rem; font: italic .8rem var(--serif); color: var(--muted); }
+.instruments .group:first-child { margin-top: .4rem; }
+.instruments .lead { margin: .5rem 0 1rem; color: var(--text); }
+.ensembles { list-style: none; margin: 0 0 1.25rem; padding: 0; }
+.ensembles li { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .75rem; padding: .6rem 0; border-top: 1px solid var(--hair); }
+.ensembles li:first-child { border-top: 0; padding-top: 0; }
+.ensembles strong { font-weight: 500; color: var(--text); }
+.ensembles span { font-size: .85rem; color: var(--muted); }
+.ensembles .role { font: 600 .68rem var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--accent-ink); }
+.instruments .note { margin: 0; font: italic 1rem var(--serif); color: var(--heading); }
 .edu strong { font-family: var(--serif); font-size: 1.15rem; color: var(--heading); }
 .resources li { grid-template-columns: 1fr; }
 .group { margin: 2rem 0 .5rem; font: 600 .75rem var(--sans); letter-spacing: .18em; text-transform: uppercase; color: var(--accent-ink); }
@@ -363,7 +385,8 @@ h3 + .group { margin-top: 0; }
   .sidebar nav a { padding: .35rem .75rem; border-radius: 999px; font-size: .7rem; letter-spacing: .12em; }
   .sidebar footer { padding: .5rem 1rem .75rem; }
   main section { padding-block: 3rem 2.75rem; }
-  .year-group, .rows li, .skills { grid-template-columns: 1fr; gap: .25rem; }
+  .year-group, .rows li, .skills, .instruments > li { grid-template-columns: 1fr; gap: .25rem; }
+  .instruments > li { gap: 1rem; }
   .skills dd { margin-bottom: .75rem; }
   .yr { position: static; font-size: 1.75rem; }
   .lightbox figure { padding: 3.5rem 1rem 1.5rem; }

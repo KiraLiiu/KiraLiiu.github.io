@@ -10,9 +10,28 @@ hue: 300
   <h2>What I play &amp; what's on repeat</h2>
   <p class="sub">The other language I think in.</p>
   {% if m.playing %}
-  <ul class="rows">
+  <ul class="instruments">
     {% for p in m.playing %}
-    <li class="reveal"><time>{{ p.when }}</time><div><strong>{{ p.title }}</strong><span>{{ p.detail }}</span>{% if p.note %}<span class="detail">{{ p.note }}</span>{% endif %}</div></li>
+    <li class="reveal">
+      <div>
+        <h3>{{ p.title }}</h3>
+        {% if p.photos %}
+        <div class="slides{% if p.small %} small{% endif %}">
+          {% for ph in p.photos %}<figure{% if forloop.first %} class="on"{% endif %}><img src="{{ ph.src | relative_url }}" alt="{{ ph.caption }}" loading="lazy" draggable="false"><figcaption>{{ ph.caption }}</figcaption></figure>{% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      <div>
+        {% if p.detail %}<p class="lead">{{ p.detail }}</p>{% endif %}
+        {% for g in p.groups %}
+        <p class="group">{{ g.label }}</p>
+        <ol class="ensembles">
+          {% for e in g.items %}<li><strong>{{ e.name }}</strong>{% if e.place %}<span>{{ e.place }}</span>{% endif %}{% if e.role %}<span class="role">{{ e.role }}</span>{% endif %}</li>{% endfor %}
+        </ol>
+        {% endfor %}
+        {% if p.note %}<p class="note">{{ p.note }}</p>{% endif %}
+      </div>
+    </li>
     {% endfor %}
   </ul>
   {% elsif m.listening == nil %}

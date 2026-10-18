@@ -1,14 +1,43 @@
 # Both lists are optional; empty sections are hidden.
 # `cover` is an image path (e.g. /images/music/album.jpg) or URL; without it a tinted tile is shown.
 playing:
+  # Each: title, photos [{ src, caption }] (several = slideshow), small (narrow photo),
+  # detail (one line), groups [{ label, items [{ name, place, role }] }], note (italic aside)
   - title: Violin
-    detail: Orchestral violinist since my early years — Kite Youth Symphony Orchestra, Shanghai, and the Hamburg International Youth Music Festival in Germany; concertmaster of the Jincai High School Philharmonic Orchestra; then the SJTU Chinese–Western Orchestra and the SJTU Symphony Orchestra.
+    photos:
+      - src: /images/music/jincai-2018.jpg
+        caption: “Symphony Night” New Year Concert, Jincai Philharmonic Orchestra, 2018
+      - src: /images/music/sjtu-gala-2021.jpg
+        caption: SJTU Military Training Gala, Chinese–Western & Symphony Orchestras, 2021
+      - src: /images/music/sjtu-orchestra.jpg
+        caption: SJTU Chinese–Western Orchestra, first year
+    groups:
+      - label: Performances
+        items:
+          - name: Hamburg International Youth Music Festival
+            place: Germany
+          - name: “Symphony Night” New Year Concert
+            place: Jincai Philharmonic Orchestra · 2018
+          - name: SJTU Military Training Gala
+            place: SJTU Chinese–Western & Symphony Orchestras · 2021
+      - label: Orchestras
+        items:
+          - name: Kite Youth Symphony Orchestra
+            place: Shanghai
+          - name: Jincai Philharmonic Orchestra
+            place: Shanghai
+            role: Concertmaster
+          - name: SJTU Chinese–Western Orchestra
+            place: Shanghai
+          - name: SJTU Symphony Orchestra
+            place: Shanghai
     note: Violinist by royal appointment of Shuting Yang.
   - title: Piano
+    small: true
+    photos:
+      - src: /images/music/piano-derousse.jpg
+        caption: Blanche Derousse, Jeune femme au piano (c. 1905)
     detail: Beginner — learning for the joy of it.
-  # - when: 2010 –
-  #   title: Piano
-  #   detail: Classical, and lately a lot of film scores
 listening:
   # - title: Album Title
   #   artist: Artist Name

@@ -29,7 +29,7 @@ if ($('#map') && window.L && window.places?.length) {
   ;[['Pacific<br>Ocean', 2, -118], ['Pacific<br>Ocean', 24, 147], ['Atlantic Ocean', 25, -42], ['Indian Ocean', -20, 78],
     ['Arctic Ocean', 80, 0], ['Southern Ocean', -62, 60]].forEach(([s, lat, lng]) => text([lat, lng], s, 'ocean'))
   // Hover shows the name; click opens a card with the Wikipedia intro + photo (fetched once) and a Google Maps link
-  const langs = { China: 'zh-CN', Taiwan: 'zh-TW', Japan: 'ja', Germany: 'de', Austria: 'de', Russia: 'ru' }
+  const langs = { China: 'zh-CN', Taiwan: 'zh-TW', Japan: 'ja', Germany: 'de', Austria: 'de', Russia: 'ru', Italy: 'it', 'Vatican City': 'it' }
   const pts = window.places.map((p) => {
     const en = p.name === p.country ? p.name : `${p.name}, ${p.country}`
     const title = `${en}${p.note ? ` (${p.note})` : ''}${p.local ? `<br><span class="local" lang="${langs[p.country] || ''}">${p.local}</span>` : ''}`
@@ -153,3 +153,11 @@ if (box) {
   })
   box.addEventListener('click', (e) => { if (!e.target.closest('img, button')) box.close() })
 }
+
+// Music: crossfade photo slideshows
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches) $$('.slides').forEach((el) => {
+  const figs = [...el.children]
+  if (figs.length < 2) return
+  let i = 0
+  setInterval(() => { figs[i].classList.remove('on'); i = (i + 1) % figs.length; figs[i].classList.add('on') }, 5000)
+})
