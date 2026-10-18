@@ -1,6 +1,11 @@
 # Both lists are optional; empty sections are hidden.
 # `cover` is an image path (e.g. /images/music/album.jpg) or URL; without it a tinted tile is shown.
 playing:
+  - title: Violin
+    detail: Orchestral violinist since my early years — Kite Youth Symphony Orchestra, Shanghai, and the Hamburg International Youth Music Festival in Germany; concertmaster of the Jincai High School Philharmonic Orchestra; then the SJTU Chinese–Western Orchestra and the SJTU Symphony Orchestra.
+    note: Violinist by royal appointment of Shuting Yang.
+  - title: Piano
+    detail: Beginner — learning for the joy of it.
   # - when: 2010 –
   #   title: Piano
   #   detail: Classical, and lately a lot of film scores

@@ -12,7 +12,7 @@ hue: 300
   {% if m.playing %}
   <ul class="rows">
     {% for p in m.playing %}
-    <li class="reveal"><time>{{ p.when }}</time><div><strong>{{ p.title }}</strong><span>{{ p.detail }}</span></div></li>
+    <li class="reveal"><time>{{ p.when }}</time><div><strong>{{ p.title }}</strong><span>{{ p.detail }}</span>{% if p.note %}<span class="detail">{{ p.note }}</span>{% endif %}</div></li>
     {% endfor %}
   </ul>
   {% elsif m.listening == nil %}
