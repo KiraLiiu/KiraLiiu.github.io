@@ -1,0 +1,21 @@
+# Conference presentations, newest first. Shown under Conference on the Research page;
+# entries with kind: Talk also appear on the Talks page.
+# kind: Talk or Poster · upcoming: true adds an "Upcoming" label · your name (as in `me`) gets underlined.
+# Optional: fields (same names as publications), video, thumb, links.
+- when: "2026"
+  kind: Talk
+  upcoming: true
+  event: WPATH 2026
+  title: "Minority Stress Pathways and Mental Health Outcomes: A National Survey of Transgender and Gender-Diverse Individuals in China"
+  authors: Kira Liu (presenter), Zheyu Hu, Shequilla Xue, Xenia Jiang (co-presenters)
+  me: Kira Liu
+  fields: [Epidemiology, Mental Health, Health Equity]
+
+- when: "2026"
+  kind: Poster
+  event: ISMB 2026 · Poster 1462
+  title: Robust and Interpretable Modeling of Dynamic Metabolic States from Longitudinal Multi-Omics under Dietary Perturbation and Aging
+  authors: Liu, J., Lamming, D., Denu, J.
+  me: Liu, J.
+  fields: [Machine Learning, Computational Biology & Bioinformatics, Metabolism, Aging]
+  links: { Code: "https://github.com/KiraLiiu/MOFA_analysis_pipeline" }

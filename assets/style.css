@@ -15,14 +15,16 @@
   --rule: light-dark(oklch(91.5% .008 var(--hue)), oklch(22% .012 var(--hue)));
   --side: light-dark(oklch(62% .085 var(--hue)), oklch(31% .06 var(--hue)));
   --side-soft: light-dark(oklch(94% .025 var(--hue)), oklch(83% .04 var(--hue)));
-  /* field colors (labels, dots, filter chips) */
+  /* field colors (labels, filter chips) */
   --f-ml: light-dark(#3c4a8a, #a9b5ea);
+  --f-nlp: light-dark(#2d5f86, #9cc4e8);
+  --f-compbio: light-dark(#3f6b52, #9fd1b3);
   --f-clin: light-dark(#9a4a43, #eba9a2);
-  --f-omics: light-dark(#3f6b52, #9fd1b3);
-  --f-bioinfo: light-dark(#2f6a73, #96d0d8);
   --f-epi: light-dark(#8a6420, #e2c07c);
-  --f-bio: light-dark(#6e4a75, #d0aad6);
-  --f-stat: light-dark(#5a5f6e, #b9bdca);
+  --f-metab: light-dark(#2f6a73, #96d0d8);
+  --f-aging: light-dark(#6e4a75, #d0aad6);
+  --f-mental: light-dark(#8c3d66, #e7a7c9);
+  --f-equity: light-dark(#5b6a2e, #c6d48e);
   --side-line: rgb(255 255 255 / .16);
   --sidebar-w: 21rem;
   --gutter: max(3.5rem, calc((100% - 52rem) / 2));
@@ -166,12 +168,14 @@ main h3 { margin: 0 0 1.75rem; font-size: 1.75rem; font-weight: 400; }
 .tag.role-first-author { color: var(--accent-ink); background: none; box-shadow: inset 0 0 0 1px var(--accent); }
 .tag.kind { color: var(--accent-ink); background: color-mix(in srgb, var(--accent) 16%, transparent); }
 .f-machine-learning { --c: var(--f-ml); }
+.f-natural-language-processing { --c: var(--f-nlp); }
+.f-computational-biology-bioinformatics { --c: var(--f-compbio); }
 .f-clinical-informatics { --c: var(--f-clin); }
-.f-multi-omics { --c: var(--f-omics); }
-.f-bioinformatics { --c: var(--f-bioinfo); }
 .f-epidemiology { --c: var(--f-epi); }
-.f-molecular-biology { --c: var(--f-bio); }
-.f-statistical-modeling { --c: var(--f-stat); }
+.f-metabolism { --c: var(--f-metab); }
+.f-aging { --c: var(--f-aging); }
+.f-mental-health { --c: var(--f-mental); }
+.f-health-equity { --c: var(--f-equity); }
 .year-group { display: grid; grid-template-columns: 8rem minmax(0, 1fr); gap: 2rem; padding: 2rem 0; border-top: 1px solid var(--hair); }
 .yr { margin: 0; position: sticky; top: 2rem; align-self: start; font: italic 300 2.25rem/1 var(--serif); color: var(--line); }
 .pubs { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.9rem; }

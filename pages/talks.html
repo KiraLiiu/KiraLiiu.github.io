@@ -1,0 +1,39 @@
+---
+layout: default
+title: Talks
+permalink: /talks/
+hue: 230
+---
+{% assign talks = site.data.conferences | where: "kind", "Talk" %}
+<section>
+  <p class="eyebrow">Talks</p>
+  <h2>Talks</h2>
+  <p class="sub">Sharing my work beyond the lab: academic exchange and conversations with the wider community.</p>
+  {% if talks.size > 0 %}
+  <ul class="pubs confs">
+    {% for t in talks %}{% include presentation.html item=t %}{% endfor %}
+  </ul>
+  {% else %}
+  <p class="empty">Talks will be listed here.</p>
+  {% endif %}
+</section>
+
+{% assign recorded = talks | where_exp: "t", "t.video" %}
+{% if recorded.size > 0 %}
+<section>
+  <h3>Recordings</h3>
+  <ul class="videos">
+    {% for t in recorded %}
+    <li class="reveal">
+      <a href="{{ t.video }}">
+        <div class="thumb"{% if t.thumb %} style="background-image: url('{{ t.thumb | relative_url }}')"{% endif %}>
+          <span class="play"><svg class="i" viewBox="0 0 24 24"><polygon points="7 4 20 12 7 20 7 4"/></svg></span>
+        </div>
+        <h4>{{ t.title }}</h4>
+        <p>{{ t.event }} · {{ t.when }}</p>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}

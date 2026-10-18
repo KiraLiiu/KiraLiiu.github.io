@@ -13,24 +13,24 @@ hue: 160
 <section>
   <p class="eyebrow">Research</p>
   <h2>From molecules to populations</h2>
-  <p class="lede">I build robust, interpretable computational methods for complex health data, and use them to ask questions across scales, from molecular profiles to patients to communities.</p>
+  <p class="lede">I develop <strong>robust and interpretable AI methods</strong> for understanding health from molecules to populations.</p>
   <div class="interests">
     <div class="reveal">
-      <h4>Methods I work with</h4>
+      <h4>Methods &amp; data</h4>
       <ul>
-        <li>Machine learning for biomedical data</li>
-        <li>Clinical informatics &amp; multimodal EHR</li>
-        <li>Multi-omics integration</li>
-        <li>Statistical &amp; Bayesian modeling</li>
+        <li>Machine learning</li>
+        <li>Natural language processing</li>
+        <li>Genomics &amp; multi-omics</li>
+        <li>Electronic health records</li>
       </ul>
     </div>
     <div class="reveal">
-      <h4>Areas I care about</h4>
+      <h4>Applications</h4>
       <ul>
-        <li>Mental health &amp; substance use</li>
-        <li>Metabolism, nutrition &amp; aging</li>
-        <li>LGBTQ+ health &amp; health equity</li>
-        <li>Molecular mechanisms of disease</li>
+        <li>Metabolism</li>
+        <li>Aging</li>
+        <li>Mental health</li>
+        <li>Health equity of minority populations</li>
       </ul>
     </div>
   </div>
@@ -66,26 +66,11 @@ hue: 160
   {% endfor %}
 </section>
 
-{% if site.data.talks.size > 0 %}
-<section id="talks">
-  <h3>Talks</h3>
-  <p class="note">Sharing my work beyond the lab: academic exchange and conversations with the wider community.</p>
+{% if site.data.conferences.size > 0 %}
+<section id="conference">
+  <h3>Conference</h3>
   <ul class="pubs confs">
-    {% for t in site.data.talks %}
-    {% capture tme %}<span class="me">{{ t.me }}</span>{% endcapture %}
-    <li class="pub reveal">
-      <time>{{ t.when }}</time>
-      <div>
-        <p class="tags">
-          {% if t.upcoming %}<span class="tag kind">Upcoming</span>{% endif %}
-          {% for f in t.fields %}<span class="tag f-{{ f | slugify }}">{{ f }}</span>{% endfor %}
-        </p>
-        <h4>{{ t.title }}</h4>
-        <p class="authors">{% if t.me %}{{ t.authors | replace: t.me, tme }}{% else %}{{ t.authors }}{% endif %} · <em>{{ t.event }}</em></p>
-        {% if t.video %}<p class="links"><a href="{{ t.video }}">Recording</a>{% for l in t.links %}<a href="{{ l[1] }}">{{ l[0] }}</a>{% endfor %}</p>{% elsif t.links %}<p class="links">{% for l in t.links %}<a href="{{ l[1] }}">{{ l[0] }}</a>{% endfor %}</p>{% endif %}
-      </div>
-    </li>
-    {% endfor %}
+    {% for c in site.data.conferences %}{% include presentation.html item=c %}{% endfor %}
   </ul>
 </section>
 {% endif %}

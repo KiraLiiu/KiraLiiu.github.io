@@ -1,0 +1,16 @@
+{% comment %} One conference entry. Usage: include presentation.html item=c {% endcomment %}
+{% assign c = include.item %}
+{% capture cme %}<span class="me">{{ c.me }}</span>{% endcapture %}
+<li class="pub reveal" data-cat="{{ c.fields | join: '|' }}">
+  <time>{{ c.when }}</time>
+  <div>
+    <p class="tags">
+      <span class="tag kind">{{ c.kind }}</span>
+      {% if c.upcoming %}<span class="tag role">Upcoming</span>{% endif %}
+      {% for f in c.fields %}<span class="tag f-{{ f | slugify }}">{{ f }}</span>{% endfor %}
+    </p>
+    <h4>{{ c.title }}</h4>
+    <p class="authors">{% if c.me %}{{ c.authors | replace: c.me, cme }}{% else %}{{ c.authors }}{% endif %} · <em>{{ c.event }}</em></p>
+    {% if c.video or c.links %}<p class="links">{% if c.video %}<a href="{{ c.video }}">Recording</a>{% endif %}{% for l in c.links %}<a href="{{ l[1] }}">{{ l[0] }}</a>{% endfor %}</p>{% endif %}
+  </div>
+</li>
