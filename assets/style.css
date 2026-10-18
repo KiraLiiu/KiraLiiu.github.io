@@ -199,6 +199,7 @@ main h3 { margin: 0 0 1.75rem; font-size: 1.75rem; font-weight: 400; }
 .rows strong, .rows div > a { display: block; font-weight: 500; color: var(--text); }
 .rows div > span { display: block; font-size: .9rem; color: var(--muted); }
 .rows .detail { font-size: .85rem; font-style: italic; }
+.edu strong { font-family: var(--serif); font-size: 1.15rem; color: var(--heading); }
 .resources li { grid-template-columns: 1fr; }
 .group { margin: 2rem 0 .5rem; font: 600 .75rem var(--sans); letter-spacing: .18em; text-transform: uppercase; color: var(--accent-ink); }
 h3 + .group { margin-top: 0; }

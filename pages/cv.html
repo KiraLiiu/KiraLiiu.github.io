@@ -28,9 +28,14 @@ hue: 265
 
 <section>
   <h3>Education</h3>
+  {% include education.html %}
+</section>
+
+<section>
+  <h3>Experience</h3>
   <ul class="rows">
-    {% for e in site.data.cv.education %}
-    <li class="reveal"><time>{{ e.when }}</time><div><strong>{{ e.title }}</strong><span>{{ e.org }}</span>{% if e.detail %}<span class="detail">{{ e.detail }}</span>{% endif %}</div></li>
+    {% for e in site.data.cv.experience %}
+    <li class="reveal"><time>{{ e.when }}</time><div><strong>{{ e.title }}</strong><span>{{ e.org }}</span></div></li>
     {% endfor %}
   </ul>
 </section>

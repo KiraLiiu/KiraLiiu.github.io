@@ -10,27 +10,14 @@ hue: 265
   <div class="prose">
     <p class="lede">I'm a Ph.D. student in Biomedical Informatics at the <a href="https://hobi.med.ufl.edu/">Department of Health Outcomes and Biomedical Informatics</a>, University of Florida, working with <a href="https://hobi.med.ufl.edu/profile/yin-rui/">Dr. Rui Yin</a>.</p>
     <p>My research centers on <strong>robust and interpretable AI methods</strong> for understanding health from molecules to populations. I'm broadly interested in machine learning and natural language processing for genomics, multi-omics, and electronic health records, with applications in <strong>metabolism</strong>, <strong>aging</strong>, <strong>mental health</strong>, and <strong>health equity</strong>.</p>
-    <p>Previously, I've been fortunate to work with <a href="https://amaral.northwestern.edu/">Dr. Luis A. Nunes Amaral</a> at Northwestern University, <a href="https://www.umassmed.edu/ai4health/">Dr. Feifan Liu</a> at UMass Chan Medical School, <a href="https://denulab.discovery.wisc.edu/">Dr. John Denu</a> at the Wisconsin Institute for Discovery (UW–Madison), Dr. Xiang Gao at Fudan University, and Dr. Xiaolin Hu at Shanghai Jiao Tong University (SJTU).</p>
+    <p>Previously, I worked with <a href="https://amaral.northwestern.edu/">Dr. Luis A. Nunes Amaral</a>, <a href="https://www.umassmed.edu/ai4health/">Dr. Feifan Liu</a>, <a href="https://denulab.discovery.wisc.edu/">Dr. John Denu</a>, Dr. Xiang Gao, and Dr. Xiaolin Hu. I have spent time researching at Northwestern University, UMass Chan Medical School, UW–Madison, the University of Notre Dame, and the Shanghai Institute of Nutrition and Health (Chinese Academy of Sciences), and worked as a clinical nutritionist at Huashan Hospital. I did my undergrad at Shanghai Jiao Tong University in clinical nutrition &amp; public health, and my master's at Northwestern University in quantitative &amp; systems biology.</p>
   </div>
   <p class="contact">{% include contact.html class="pill" labels=true %}</p>
 </section>
 
 <section>
   <h3>Education</h3>
-  <ul class="rows">
-    {% for e in site.data.cv.education %}
-    <li class="reveal"><time>{{ e.when }}</time><div><strong>{{ e.title }}</strong><span>{{ e.org }}</span></div></li>
-    {% endfor %}
-  </ul>
-</section>
-
-<section>
-  <h3>Experience</h3>
-  <ul class="rows">
-    {% for e in site.data.cv.experience %}
-    <li class="reveal"><time>{{ e.when }}</time><div><strong>{{ e.title }}</strong><span>{{ e.org }}</span></div></li>
-    {% endfor %}
-  </ul>
+  {% include education.html %}
 </section>
 
 <section>

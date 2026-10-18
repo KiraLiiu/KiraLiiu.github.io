@@ -1,0 +1,6 @@
+{% comment %} Education list from _data/cv.yml: school first, degree underneath. {% endcomment %}
+<ul class="rows edu">
+  {% for e in site.data.cv.education %}
+  <li class="reveal"><time>{{ e.when }}</time><div><strong>{{ e.school }}</strong><span>{{ e.degree }}</span>{% if e.detail %}<span class="detail">{{ e.detail }}</span>{% endif %}</div></li>
+  {% endfor %}
+</ul>

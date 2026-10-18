@@ -1,14 +1,14 @@
 education:
   - when: 2026 –
-    title: Ph.D. in Biomedical Informatics
-    org: University of Florida · Gainesville, FL
+    school: University of Florida
+    degree: Ph.D. in Biomedical Informatics
     detail: Department of Health Outcomes and Biomedical Informatics, College of Medicine
   - when: 2025 – 2026
-    title: M.Sc. in Quantitative & Systems Biology
-    org: Northwestern University · Evanston, IL
+    school: Northwestern University
+    degree: M.Sc. in Quantitative & Systems Biology
   - when: 2020 – 2024
-    title: B.Sc. in Clinical Nutrition and Public Health
-    org: Shanghai Jiao Tong University · Shanghai, China
+    school: Shanghai Jiao Tong University
+    degree: B.Sc. in Clinical Nutrition and Public Health
 
 experience:
   - when: Jun 2025 – Jun 2026
