@@ -46,6 +46,7 @@
 - { name: "Fuzhou", country: China, lat: 26.0745, lng: 119.2965 }
 - { name: "Xiamen", country: China, lat: 24.4798, lng: 118.0894 }
 - { name: "Hong Kong", country: China, lat: 22.3193, lng: 114.1694 }
+- { name: "Kenting, Taiwan", country: Taiwan, lat: 21.9483, lng: 120.7798 }
 
 # Japan & Singapore
 - { name: "Tokyo", country: Japan, lat: 35.6762, lng: 139.6503 }

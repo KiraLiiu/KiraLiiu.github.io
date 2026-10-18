@@ -56,7 +56,7 @@ permalink: /
 <section>
   <h3>Places I've been</h3>
   {% assign countries = site.data.places | map: "country" | uniq %}
-  <p class="sub">I love traveling, and it's a wonderful life experience to visit these beautiful places. <span class="count">{{ site.data.places.size }} places · {{ countries.size }} countries</span></p>
+  <p class="sub">I love traveling, and it's a wonderful life experience to visit these beautiful places. <span class="count">{{ site.data.places.size }} places · {{ countries.size }} countries &amp; regions</span></p>
   <div id="map" class="map" role="img" aria-label="Map of places I've visited"></div>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
