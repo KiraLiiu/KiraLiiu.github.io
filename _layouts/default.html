@@ -17,8 +17,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@300..700&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&display=swap">
-  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
-  <script src="{{ '/assets/main.js' | relative_url }}" defer></script>
+  {% assign v = site.time | date: "%s" %}{% comment %} build stamp: new CSS/JS URLs on every deploy, so browsers never pair new HTML with cached old CSS {% endcomment %}
+  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}?v={{ v }}">
+  <script src="{{ '/assets/main.js' | relative_url }}?v={{ v }}" defer></script>
 </head>
 <body>
   <div class="progress" aria-hidden="true"></div>
