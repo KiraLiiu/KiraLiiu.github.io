@@ -1,23 +1,26 @@
 # Places for the travel map on the home page. Coordinates: right-click a spot in Google Maps to copy them.
+# Label = name (city, region), country (note) · local. `local` = native-language name (Chinese, Japanese, German, Russian).
+# Optional `wiki:` = English Wikipedia title for the click-popup intro, when the name alone doesn't resolve.
 # Places I've lived
-- { name: "Shanghai (home)", country: China, lat: 31.2304, lng: 121.4737 }
+- { name: "Shanghai", note: "home", local: "上海", country: China, lat: 31.2304, lng: 121.4737 }
 - { name: "Gainesville, FL", country: United States, lat: 29.6516, lng: -82.3248 }
 - { name: "Evanston, IL", country: United States, lat: 42.0451, lng: -87.6877 }
 - { name: "Madison, WI", country: United States, lat: 43.0731, lng: -89.4012 }
 
 # United States
-- { name: "Seattle", country: United States, lat: 47.6062, lng: -122.3321 }
-- { name: "Santa Barbara", country: United States, lat: 34.4208, lng: -119.6982 }
-- { name: "Los Angeles", country: United States, lat: 34.0522, lng: -118.2437 }
-- { name: "Chicago", country: United States, lat: 41.8781, lng: -87.6298 }
+- { name: "San Francisco, CA", country: United States, lat: 37.7749, lng: -122.4194 }
+- { name: "Seattle, WA", country: United States, lat: 47.6062, lng: -122.3321 }
+- { name: "Santa Barbara, CA", wiki: "Santa Barbara, California", country: United States, lat: 34.4208, lng: -119.6982 }
+- { name: "Los Angeles, CA", country: United States, lat: 34.0522, lng: -118.2437 }
+- { name: "Chicago, IL", country: United States, lat: 41.8781, lng: -87.6298 }
 - { name: "Notre Dame, IN", country: United States, lat: 41.7052, lng: -86.2353 }
-- { name: "New York", country: United States, lat: 40.7128, lng: -74.0060 }
-- { name: "Boston", country: United States, lat: 42.3601, lng: -71.0589 }
-- { name: "New Haven (Yale)", country: United States, lat: 41.3163, lng: -72.9223 }
+- { name: "New York, NY", wiki: "New York City", country: United States, lat: 40.7128, lng: -74.0060 }
+- { name: "Boston, MA", country: United States, lat: 42.3601, lng: -71.0589 }
+- { name: "New Haven, CT", note: "Yale", country: United States, lat: 41.3163, lng: -72.9223 }
 - { name: "New Canaan, CT", country: United States, lat: 41.1468, lng: -73.4948 }
-- { name: "Orlando", country: United States, lat: 28.5384, lng: -81.3789 }
-- { name: "Jacksonville", country: United States, lat: 30.3322, lng: -81.6557 }
-- { name: "Atlanta", country: United States, lat: 33.7490, lng: -84.3880 }
+- { name: "Orlando, FL", wiki: "Orlando, Florida", country: United States, lat: 28.5384, lng: -81.3789 }
+- { name: "Jacksonville, FL", country: United States, lat: 30.3322, lng: -81.6557 }
+- { name: "Atlanta, GA", country: United States, lat: 33.7490, lng: -84.3880 }
 - { name: "West Lafayette, IN", country: United States, lat: 40.4259, lng: -86.9081 }
 - { name: "Louisville, KY", country: United States, lat: 38.2527, lng: -85.7585 }
 
@@ -25,41 +28,42 @@
 - { name: "Mexico City", country: Mexico, lat: 19.4326, lng: -99.1332 }
 
 # Europe
-- { name: "Barcelona", country: Spain, lat: 41.3874, lng: 2.1686 }
+- { name: "Moscow", local: "Москва", country: Russia, lat: 55.7558, lng: 37.6173 }
+- { name: "Barcelona, Catalonia", country: Spain, lat: 41.3874, lng: 2.1686 }
 - { name: "Lisbon", country: Portugal, lat: 38.7223, lng: -9.1393 }
-- { name: "Düsseldorf", country: Germany, lat: 51.2277, lng: 6.7735 }
-- { name: "Munich", country: Germany, lat: 48.1351, lng: 11.5820 }
-- { name: "Passau", country: Germany, lat: 48.5665, lng: 13.4312 }
-- { name: "Vienna", country: Austria, lat: 48.2082, lng: 16.3738 }
-- { name: "Hallstatt", country: Austria, lat: 47.5622, lng: 13.6493 }
-- { name: "Bad Ischl", country: Austria, lat: 47.7115, lng: 13.6195 }
+- { name: "Düsseldorf, North Rhine-Westphalia", local: "Düsseldorf, Nordrhein-Westfalen", country: Germany, lat: 51.2277, lng: 6.7735 }
+- { name: "Munich, Bavaria", local: "München, Bayern", country: Germany, lat: 48.1351, lng: 11.5820 }
+- { name: "Passau, Bavaria", local: "Passau, Bayern", country: Germany, lat: 48.5665, lng: 13.4312 }
+- { name: "Vienna", local: "Wien", country: Austria, lat: 48.2082, lng: 16.3738 }
+- { name: "Hallstatt, Upper Austria", local: "Hallstatt, Oberösterreich", country: Austria, lat: 47.5622, lng: 13.6493 }
+- { name: "Bad Ischl, Upper Austria", local: "Bad Ischl, Oberösterreich", country: Austria, lat: 47.7115, lng: 13.6195 }
 
 # China
-- { name: "Hangzhou", country: China, lat: 30.2741, lng: 120.1551 }
-- { name: "Wuxi", country: China, lat: 31.4912, lng: 120.3119 }
-- { name: "Suzhou", country: China, lat: 31.2990, lng: 120.5853 }
-- { name: "Beijing", country: China, lat: 39.9042, lng: 116.4074 }
-- { name: "Bazhong, Sichuan", country: China, lat: 31.8691, lng: 106.7478 }
-- { name: "Chongqing", country: China, lat: 29.5630, lng: 106.5516 }
-- { name: "Wuhan", country: China, lat: 30.5928, lng: 114.3055 }
-- { name: "Yichang", country: China, lat: 30.6919, lng: 111.2865 }
-- { name: "Changsha", country: China, lat: 28.2282, lng: 112.9388 }
-- { name: "Ürümqi, Xinjiang", country: China, lat: 43.8256, lng: 87.6168 }
-- { name: "Sayram Lake, Xinjiang", country: China, lat: 44.6000, lng: 81.1700 }
-- { name: "Tekes (Bagua City), Xinjiang", country: China, lat: 43.2177, lng: 81.8361 }
-- { name: "Nalati, Xinjiang", country: China, lat: 43.3170, lng: 84.0170 }
-- { name: "Guangzhou", country: China, lat: 23.1291, lng: 113.2644 }
-- { name: "Shunde", country: China, lat: 22.8058, lng: 113.2934 }
-- { name: "Shenzhen", country: China, lat: 22.5431, lng: 114.0579 }
-- { name: "Zhuhai", country: China, lat: 22.2707, lng: 113.5767 }
-- { name: "Fuzhou", country: China, lat: 26.0745, lng: 119.2965 }
-- { name: "Xiamen", country: China, lat: 24.4798, lng: 118.0894 }
-- { name: "Hong Kong", country: China, lat: 22.3193, lng: 114.1694 }
-- { name: "Kenting, Taiwan", country: Taiwan, lat: 21.9483, lng: 120.7798 }
+- { name: "Hangzhou, Zhejiang", local: "浙江杭州", country: China, lat: 30.2741, lng: 120.1551 }
+- { name: "Wuxi, Jiangsu", local: "江苏无锡", country: China, lat: 31.4912, lng: 120.3119 }
+- { name: "Suzhou, Jiangsu", local: "江苏苏州", country: China, lat: 31.2990, lng: 120.5853 }
+- { name: "Beijing", local: "北京", country: China, lat: 39.9042, lng: 116.4074 }
+- { name: "Bazhong, Sichuan", local: "四川巴中", country: China, lat: 31.8691, lng: 106.7478 }
+- { name: "Chongqing", local: "重庆", country: China, lat: 29.5630, lng: 106.5516 }
+- { name: "Wuhan, Hubei", local: "湖北武汉", country: China, lat: 30.5928, lng: 114.3055 }
+- { name: "Yichang, Hubei", local: "湖北宜昌", country: China, lat: 30.6919, lng: 111.2865 }
+- { name: "Changsha, Hunan", local: "湖南长沙", country: China, lat: 28.2282, lng: 112.9388 }
+- { name: "Ürümqi, Xinjiang", local: "新疆乌鲁木齐", country: China, lat: 43.8256, lng: 87.6168 }
+- { name: "Sayram Lake, Xinjiang", local: "新疆赛里木湖", country: China, lat: 44.6000, lng: 81.1700 }
+- { name: "Tekes, Xinjiang", note: "Bagua City", local: "新疆特克斯（八卦城）", wiki: "Tekes County", country: China, lat: 43.2177, lng: 81.8361 }
+- { name: "Nalati, Xinjiang", local: "新疆那拉提", wiki: "Xinyuan County", country: China, lat: 43.3170, lng: 84.0170 }
+- { name: "Guangzhou, Guangdong", local: "广东广州", country: China, lat: 23.1291, lng: 113.2644 }
+- { name: "Shunde, Foshan, Guangdong", local: "广东佛山顺德", country: China, lat: 22.8058, lng: 113.2934 }
+- { name: "Shenzhen, Guangdong", local: "广东深圳", country: China, lat: 22.5431, lng: 114.0579 }
+- { name: "Zhuhai, Guangdong", local: "广东珠海", country: China, lat: 22.2707, lng: 113.5767 }
+- { name: "Fuzhou, Fujian", local: "福建福州", country: China, lat: 26.0745, lng: 119.2965 }
+- { name: "Xiamen, Fujian", local: "福建厦门", country: China, lat: 24.4798, lng: 118.0894 }
+- { name: "Hong Kong", local: "香港", country: China, lat: 22.3193, lng: 114.1694 }
+- { name: "Kenting, Pingtung", local: "屏東墾丁", wiki: "Kenting National Park", country: Taiwan, lat: 21.9483, lng: 120.7798 }
 
 # Japan & Singapore
-- { name: "Tokyo", country: Japan, lat: 35.6762, lng: 139.6503 }
-- { name: "Hakone", country: Japan, lat: 35.2324, lng: 139.1069 }
-- { name: "Kyoto", country: Japan, lat: 35.0116, lng: 135.7681 }
-- { name: "Osaka", country: Japan, lat: 34.6937, lng: 135.5023 }
+- { name: "Tokyo", local: "東京", country: Japan, lat: 35.6762, lng: 139.6503 }
+- { name: "Hakone, Kanagawa", local: "神奈川県箱根町", country: Japan, lat: 35.2324, lng: 139.1069 }
+- { name: "Kyoto", local: "京都", country: Japan, lat: 35.0116, lng: 135.7681 }
+- { name: "Osaka", local: "大阪", country: Japan, lat: 34.6937, lng: 135.5023 }
 - { name: "Singapore", country: Singapore, lat: 1.3521, lng: 103.8198 }

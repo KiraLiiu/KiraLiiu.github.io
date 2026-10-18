@@ -170,7 +170,23 @@ main h3 { margin: 0 0 1.75rem; font-size: 1.75rem; font-weight: 400; }
 .pill { display: inline-flex; align-items: center; gap: .5rem; padding: .5rem 1.1rem; border: 1px solid var(--line); border-radius: 999px; font-size: .85rem; font-weight: 500; color: var(--heading); text-decoration: none; transition: background .3s, color .3s, border-color .3s, transform .3s; }
 .pill:hover { background: var(--heading); border-color: var(--heading); color: var(--bg); text-decoration: none; transform: translateY(-2px); }
 .map { height: 26rem; border-radius: .6rem; overflow: hidden; border: 1px solid var(--hair); background: var(--surface); z-index: 0; }
-.map .leaflet-popup-content { font: 500 .85rem var(--sans); }
+.map .leaflet-tooltip { font: 500 .85rem var(--sans); background: var(--surface); color: var(--text); border-color: var(--line); }
+.map .leaflet-tooltip-top::before { border-top-color: var(--line); }
+.map .leaflet-top { top: 1.3rem; }
+.map .tz { stroke: var(--line); stroke-width: 1; stroke-dasharray: 3 5; }
+.map .geo-label span { position: absolute; transform: translate(-50%, -50%); white-space: nowrap; color: var(--muted); }
+.map .tz-label span { transform: translate(-50%, .4rem); font: 500 .62rem var(--sans); letter-spacing: .06em; opacity: .8; }
+.map .continent span { font: 600 .68rem var(--sans); letter-spacing: .22em; text-transform: uppercase; opacity: .75; }
+.map .ocean span { font: italic 400 .85rem/1.2 var(--serif); letter-spacing: .08em; opacity: .7; text-align: center; }
+.map .leaflet-popup-content-wrapper, .map .leaflet-popup-tip { background: var(--surface); color: var(--text); }
+.map .leaflet-popup-content { margin: .9rem 1rem; }
+.map .place { font: 400 .8rem/1.45 var(--sans); }
+.map .place img { display: block; width: 100%; height: 8rem; object-fit: cover; border-radius: .3rem; margin-bottom: .6rem; }
+.map .place strong { color: var(--heading); font-size: .9rem; }
+.map .local { color: var(--muted); font-weight: 400; }
+.map .place p { margin: .35rem 0 .6rem; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
+.map .place span { display: flex; gap: 1rem; }
+.map .place a { color: var(--link); font-weight: 500; }
 .count { display: inline-block; margin-left: .4rem; padding: .05rem .6rem; border-radius: 999px; background: color-mix(in srgb, var(--accent) 16%, transparent); color: var(--accent-ink); font: 500 .72rem var(--sans); font-style: normal; letter-spacing: .08em; text-transform: uppercase; }
 .confs > li { display: grid; grid-template-columns: 6rem minmax(0, 1fr); gap: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--hair); }
 .tags { display: flex; flex-wrap: wrap; gap: .35rem; margin: 0 0 .5rem; }

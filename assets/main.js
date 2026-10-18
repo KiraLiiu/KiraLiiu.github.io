@@ -15,9 +15,59 @@ if ($('#map') && window.L && window.places?.length) {
   const map = L.map('map', { scrollWheelZoom: false, worldCopyJump: true })
   const tiles = L.tileLayer(tileUrl(), { maxZoom: 16, attribution: 'Tiles &copy; Esri' }).addTo(map)
   const accent = getComputedStyle(root).getPropertyValue('--accent').trim() || '#e08e6d'
-  const pts = window.places.map((p) => L.circleMarker([p.lat, p.lng], {
-    radius: 7, weight: 2, color: '#fff', fillColor: accent, fillOpacity: 0.95,
-  }).bindPopup(p.name).addTo(map))
+  // Reference layer under the dots: nominal 15° time-zone bands, continent and ocean names
+  // ponytail: nominal bands only, real zone borders (China all UTC+8, India +5:30…) need a multi-MB GeoJSON
+  map.createPane('ref').style.zIndex = 350
+  const text = (latlng, html, cls) => L.marker(latlng, { pane: 'ref', interactive: false, keyboard: false,
+    icon: L.divIcon({ className: `geo-label ${cls}`, html: `<span>${html}</span>`, iconSize: [0, 0] }) }).addTo(map)
+  for (let lng = -172.5; lng <= 172.5; lng += 15) L.polyline([[-85, lng], [85, lng]], { pane: 'ref', className: 'tz', interactive: false }).addTo(map)
+  const tz = []
+  for (let n = -11; n <= 12; n++) tz.push(text([0, n * 15], n ? `UTC${n > 0 ? '+' : '−'}${Math.abs(n)}` : 'UTC', 'tz-label'))
+  map.on('move', () => tz.forEach((m) => m.setLatLng([map.getBounds().getNorth(), m.getLatLng().lng])))
+  ;[['North America', 55, -98], ['South America', -15, -60], ['Europe', 54, 8], ['Africa', 5, 20],
+    ['Asia', 58, 95], ['Oceania', -25, 135], ['Antarctica', -78, 20]].forEach(([s, lat, lng]) => text([lat, lng], s, 'continent'))
+  ;[['Pacific<br>Ocean', 2, -118], ['Pacific<br>Ocean', 24, 147], ['Atlantic Ocean', 25, -42], ['Indian Ocean', -20, 78],
+    ['Arctic Ocean', 80, 0], ['Southern Ocean', -62, 60]].forEach(([s, lat, lng]) => text([lat, lng], s, 'ocean'))
+  // Hover shows the name; click opens a card with the Wikipedia intro + photo (fetched once) and a Google Maps link
+  const langs = { China: 'zh-CN', Taiwan: 'zh-TW', Japan: 'ja', Germany: 'de', Austria: 'de', Russia: 'ru' }
+  const pts = window.places.map((p) => {
+    const en = p.name === p.country ? p.name : `${p.name}, ${p.country}`
+    const title = `${en}${p.note ? ` (${p.note})` : ''}${p.local ? `<br><span class="local" lang="${langs[p.country] || ''}">${p.local}</span>` : ''}`
+    // Wikipedia redirects "City, ST" for US places; elsewhere the city alone is the article title
+    const wikiTitle = p.wiki || (p.country === 'United States' ? p.name : p.name.split(',')[0])
+    const card = document.createElement('div')
+    card.className = 'place'
+    card.innerHTML = `<strong>${title}</strong><p>Loading…</p><span><a class="gmap" target="_blank" rel="noopener">Google Maps ↗</a></span>`
+    card.querySelector('.gmap').href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(en)}`
+    return L.circleMarker([p.lat, p.lng], {
+      radius: 7, weight: 2, color: '#fff', fillColor: accent, fillOpacity: 0.95,
+    }).bindTooltip(title, { direction: 'top', offset: [0, -6] })
+      .bindPopup(card, { minWidth: 240, maxWidth: 260 })
+      .on('popupopen', (e) => e.target.closeTooltip())
+      .once('popupopen', ({ popup }) => {
+        fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(wikiTitle.replaceAll(' ', '_'))}`)
+          .then((r) => (r.ok ? r.json() : Promise.reject()))
+          .then((d) => {
+            card.querySelector('p').textContent = d.extract
+            if (d.thumbnail) {
+              const img = new Image()
+              img.src = d.thumbnail.source
+              img.alt = d.title
+              img.onload = () => popup.update()
+              card.prepend(img)
+            }
+            const wiki = document.createElement('a')
+            wiki.href = d.content_urls.desktop.page
+            wiki.target = '_blank'
+            wiki.rel = 'noopener'
+            wiki.textContent = 'Wikipedia ↗'
+            card.querySelector('span').append(wiki)
+          })
+          .catch(() => card.querySelector('p').remove())
+          .finally(() => popup.update())
+      })
+      .addTo(map)
+  })
   map.fitBounds(L.featureGroup(pts).getBounds(), { padding: [40, 40], maxZoom: 5 })
   addEventListener('themechange', () => tiles.setUrl(tileUrl()))
 }
