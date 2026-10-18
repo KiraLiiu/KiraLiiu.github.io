@@ -1,0 +1,10 @@
+{% comment %} One gallery tile. File name = caption: "2025-Morning-Light.jpg" -> "Morning Light", 2025. include.cat = filter category (shown in the caption) {% endcomment %}
+{% assign f = include.f %}
+{% assign year = f.basename | slice: 0, 4 %}{% assign y = year | plus: 0 %}
+{% assign title = f.basename %}
+{% if y > 999 %}{% assign title = title | slice: 5, title.size | default: f.basename %}{% else %}{% assign year = "" %}{% endif %}
+{% assign title = title | replace: "-", " " | replace: "_", " " %}
+<figure class="reveal"{% if include.cat %} data-cat="{{ include.cat }}"{% endif %}>
+  <button type="button" aria-label="Open {{ title }}"><img src="{{ f.path | relative_url }}" alt="{{ title }}" loading="lazy"></button>
+  <figcaption><strong>{{ title }}</strong>{{ include.cat }}{% if include.cat and year != "" %} · {% endif %}{{ year }}</figcaption>
+</figure>

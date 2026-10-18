@@ -5,28 +5,51 @@ permalink: /gallery/
 hue: 355
 ---
 {% comment %}
-  Every image in /images/gallery/ shows up here automatically.
-  Subfolder = category (images/gallery/Photography/...). File name = caption:
-  "2025-Morning-Light.jpg" -> "Morning Light", 2025. Newest file names first.
+  Every image in /images/gallery/ shows up here automatically, newest file names first.
+    images/gallery/Painting/…, images/gallery/Photography/…   → my own work, one block each
+    images/gallery/Collection/<Artist>/…                     → artists I love, filterable by artist
+  File name = caption: "2025-Morning-Light.jpg" -> "Morning Light", 2025.
 {% endcomment %}
 {% assign exts = ".jpg .jpeg .png .webp .gif .avif" %}
 {% assign photos = "" | split: "" %}
-{% assign cats = "" | split: "" %}
 {% for f in site.static_files %}
   {% assign ext = f.extname | downcase %}
-  {% if f.path contains "/images/gallery/" and exts contains ext %}
-    {% assign photos = photos | push: f %}
-    {% assign parts = f.path | split: "/" %}
-    {% if parts.size > 4 %}{% assign cats = cats | push: parts[3] %}{% endif %}
-  {% endif %}
+  {% if f.path contains "/images/gallery/" and exts contains ext %}{% assign photos = photos | push: f %}{% endif %}
 {% endfor %}
 {% assign photos = photos | sort: "name" | reverse %}
-{% assign cats = cats | uniq | sort %}
 
 <section>
   <p class="eyebrow">Gallery</p>
   <h2>Things I see &amp; make</h2>
-  <p class="sub">Moments and work from away from the desk.</p>
+  <p class="sub">Paintings and photographs of my own.</p>
+
+  {% assign shown = 0 %}
+  {% assign groups = "Painting,Photography" | split: "," %}
+  {% for group in groups %}
+    {% assign items = "" | split: "" %}
+    {% for f in photos %}{% assign parts = f.path | split: "/" %}{% if parts[3] == group %}{% assign items = items | push: f %}{% endif %}{% endfor %}
+    {% if items.size > 0 %}
+    {% assign shown = shown | plus: 1 %}
+    <h3 class="gallery-head">{{ group }}</h3>
+    {% case group %}
+      {% when "Painting" %}<p class="note">Oil paintings from my teenage years, both exhibited.</p>
+      {% when "Photography" %}<p class="note">Jincai High School in ginkgo season — my high-school autumn.</p>
+    {% endcase %}
+    <div class="gallery mine">
+      {% for f in items %}{% include gallery-figure.html f=f %}{% endfor %}
+    </div>
+    {% endif %}
+  {% endfor %}
+  {% if shown == 0 %}<p class="empty">Work coming soon.</p>{% endif %}
+</section>
+
+{% assign items = "" | split: "" %}
+{% assign artists = "" | split: "" %}
+{% for f in photos %}{% assign parts = f.path | split: "/" %}{% if parts[3] == "Collection" and parts.size > 5 %}{% assign items = items | push: f %}{% assign artists = artists | push: parts[4] %}{% endif %}{% endfor %}
+{% assign artists = artists | uniq | sort %}
+<section>
+  <h3>Collection</h3>
+  <p class="sub">Illustrators I keep coming back to — they also paint this site's backgrounds.</p>
 
   {% assign sets = "" | split: "" %}
   {% for f in site.static_files %}{% if f.path contains "/images/backdrops/" %}{% assign parts = f.path | split: "/" %}{% assign sets = sets | push: parts[3] %}{% endif %}{% endfor %}
@@ -38,31 +61,16 @@ hue: 355
   </div>
   {% endif %}
 
-  {% if photos.size == 0 %}
-  <p class="empty">Photos coming soon.</p>
-  {% else %}
-  {% if cats.size > 1 %}
-  <div class="filters" role="group" aria-label="Filter by category">
+  {% if artists.size > 1 %}
+  <div class="filters" role="group" aria-label="Filter by artist">
     <button type="button" data-cat="All" aria-pressed="true">All</button>
-    {% for c in cats %}<button type="button" data-cat="{{ c }}" aria-pressed="false">{{ c }}</button>{% endfor %}
+    {% for c in artists %}<button type="button" data-cat="{{ c }}" aria-pressed="false">{{ c }}</button>{% endfor %}
   </div>
   {% endif %}
 
   <div class="gallery">
-    {% for f in photos %}
-    {% assign parts = f.path | split: "/" %}
-    {% assign cat = "" %}{% if parts.size > 4 %}{% assign cat = parts[3] %}{% endif %}
-    {% assign year = f.basename | slice: 0, 4 %}{% assign y = year | plus: 0 %}
-    {% assign title = f.basename %}
-    {% if y > 1900 %}{% assign title = title | slice: 5, title.size | default: f.basename %}{% else %}{% assign year = "" %}{% endif %}
-    {% assign title = title | replace: "-", " " | replace: "_", " " %}
-    <figure class="reveal" data-cat="{{ cat }}">
-      <button type="button" aria-label="Open {{ title }}"><img src="{{ f.path | relative_url }}" alt="{{ title }}" loading="lazy"></button>
-      <figcaption><strong>{{ title }}</strong>{{ cat }}{% if cat != "" and year != "" %} · {% endif %}{{ year }}</figcaption>
-    </figure>
-    {% endfor %}
+    {% for f in items %}{% assign parts = f.path | split: "/" %}{% assign artist = parts[4] %}{% include gallery-figure.html f=f cat=artist %}{% endfor %}
   </div>
-  {% endif %}
 </section>
 
 {% if photos.size > 0 %}

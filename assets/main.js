@@ -236,7 +236,7 @@ function initPage() {
     }
 
     figs.forEach((f) => f.querySelector('button').addEventListener('click', () => {
-      shown = figs.filter((g) => !g.hidden)
+      shown = [...f.parentElement.children].filter((g) => !g.hidden) // prev/next stay within this block
       show(shown.indexOf(f))
       box.showModal()
     }))

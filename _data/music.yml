@@ -5,6 +5,8 @@ playing:
   # detail (one line), groups [{ label, items [{ name, place, role }] }], note (italic aside)
   - title: Violin
     photos:
+      - src: /images/music/violin-portrait.jpg
+        caption: Warm-lit, on stage
       - src: /images/music/china-inn-2017.jpg
         caption: CHINA INN Youth Music Festival closing concert, Laeiszhalle Hamburg, 2017 (photo © GDCV)
       - src: /images/music/jincai-2018.jpg
