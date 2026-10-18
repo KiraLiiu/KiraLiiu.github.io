@@ -14,6 +14,15 @@
 - { name: "New York", country: United States, lat: 40.7128, lng: -74.0060 }
 - { name: "Boston", country: United States, lat: 42.3601, lng: -71.0589 }
 - { name: "New Haven (Yale)", country: United States, lat: 41.3163, lng: -72.9223 }
+- { name: "New Canaan, CT", country: United States, lat: 41.1468, lng: -73.4948 }
+- { name: "Orlando", country: United States, lat: 28.5384, lng: -81.3789 }
+- { name: "Jacksonville", country: United States, lat: 30.3322, lng: -81.6557 }
+- { name: "Atlanta", country: United States, lat: 33.7490, lng: -84.3880 }
+- { name: "West Lafayette, IN", country: United States, lat: 40.4259, lng: -86.9081 }
+- { name: "Louisville, KY", country: United States, lat: 38.2527, lng: -85.7585 }
+
+# Mexico
+- { name: "Mexico City", country: Mexico, lat: 19.4326, lng: -99.1332 }
 
 # Europe
 - { name: "Barcelona", country: Spain, lat: 41.3874, lng: 2.1686 }
