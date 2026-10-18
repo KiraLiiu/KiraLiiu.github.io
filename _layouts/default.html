@@ -28,6 +28,7 @@
       {% assign initials = site.name | split: " " %}
       <div class="avatar">{% if avatar %}<img src="{{ avatar.path | relative_url }}" alt="{{ site.name }}">{% else %}<span aria-hidden="true">{{ initials.first | slice: 0 }}{{ initials.last | slice: 0 }}</span>{% endif %}</div>
       <h1><a href="{{ '/' | relative_url }}">{{ site.name }}</a></h1>
+      {% if site.pronouns %}<p class="pronouns">{{ site.pronouns }}</p>{% endif %}
       <p class="tagline">{{ site.tagline }}</p>
     </header>
     <nav aria-label="Main">

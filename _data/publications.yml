@@ -1,6 +1,6 @@
 # Grouped by `year` on the Research page (newest first). Conference talks & posters live in conferences.yml.
 # fields: any of Machine Learning, Natural Language Processing, Computational Biology & Bioinformatics,
-#         Clinical Informatics, Epidemiology, Metabolism, Aging, Mental Health, Health Equity
+#         Clinical Informatics, Epidemiology, Metabolism, Aging, Mental Health, Health Equity, Molecular Biology
 # role:   optional highlight, e.g. "Co-first author" or "First author"
 # Optional: status, venue, award, links. † co-first author, * corresponding author.
 
@@ -8,7 +8,7 @@
   authors: Liu, J., Xu, F., Amaral, L.*
   status: Manuscript
   year: 2026
-  fields: [Machine Learning, Clinical Informatics]
+  fields: [Machine Learning]
   role: First author
 
 - title: Multimodal Deep Phenotyping of Opioid Use Disorder Using Electronic Health Records
@@ -29,7 +29,7 @@
   authors: Unger, M., Velagala, V., Soundarrajan, D., Gazzo, D., Kumar, N., Flores, M., Liu, J., Li, J., Zartman, J.*
   venue: Cell Communication and Signaling 23(1), 457
   year: 2025
-  fields: [Computational Biology & Bioinformatics]
+  fields: [Molecular Biology, Computational Biology & Bioinformatics]
   links: { DOI: "https://doi.org/10.1186/s12964-025-02449-9" }
 
 - title: "REmap: Software for RNA-Binding Protein Enrichment Analysis Based on Single-Cell Transcriptomic Data"
@@ -58,5 +58,5 @@
   authors: Zhu, L., Liu, L., Wang, A., Liu, J., Huang, X., Zan, T.*
   venue: Matrix Biology 121, 1–21
   year: 2023
-  fields: [Computational Biology & Bioinformatics]
+  fields: [Molecular Biology, Computational Biology & Bioinformatics]
   links: { DOI: "https://doi.org/10.1016/j.matbio.2023.05.001" }

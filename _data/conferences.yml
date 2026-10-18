@@ -9,7 +9,7 @@
   title: "Minority Stress Pathways and Mental Health Outcomes: A National Survey of Transgender and Gender-Diverse Individuals in China"
   authors: Kira Liu (presenter), Zheyu Hu, Shequilla Xue, Xenia Jiang (co-presenters)
   me: Kira Liu
-  fields: [Epidemiology, Mental Health, Health Equity]
+  fields: [Machine Learning, Epidemiology, Mental Health, Health Equity]
 
 - when: "2026"
   kind: Poster
@@ -17,5 +17,5 @@
   title: Robust and Interpretable Modeling of Dynamic Metabolic States from Longitudinal Multi-Omics under Dietary Perturbation and Aging
   authors: Liu, J., Lamming, D., Denu, J.
   me: Liu, J.
-  fields: [Machine Learning, Computational Biology & Bioinformatics, Metabolism, Aging]
+  fields: [Computational Biology & Bioinformatics, Metabolism, Aging]
   links: { Code: "https://github.com/KiraLiiu/MOFA_analysis_pipeline" }
