@@ -157,6 +157,7 @@ main h3 { margin: 0 0 1.75rem; font-size: 1.75rem; font-weight: 400; }
 .pill:hover { background: var(--heading); border-color: var(--heading); color: var(--bg); text-decoration: none; transform: translateY(-2px); }
 .map { height: 26rem; border-radius: .6rem; overflow: hidden; border: 1px solid var(--hair); background: var(--surface); z-index: 0; }
 .map .leaflet-popup-content { font: 500 .85rem var(--sans); }
+.count { display: inline-block; margin-left: .4rem; padding: .05rem .6rem; border-radius: 999px; background: color-mix(in srgb, var(--accent) 16%, transparent); color: var(--accent-ink); font: 500 .72rem var(--sans); font-style: normal; letter-spacing: .08em; text-transform: uppercase; }
 .confs > li { display: grid; grid-template-columns: 6rem minmax(0, 1fr); gap: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--hair); }
 .tags { display: flex; flex-wrap: wrap; gap: .35rem; margin: 0 0 .5rem; }
 .tag { display: inline-block; padding: .1rem .5rem; border-radius: 3px; font-size: .66rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; line-height: 1.6; color: var(--c); background: color-mix(in srgb, var(--c) 13%, transparent); }
