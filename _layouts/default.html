@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if page.title and page.title != "Home" %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+  <link rel="icon" href="data:,">
   <meta name="description" content="{{ page.description | default: site.description }}">
   <script>
     document.documentElement.className = 'js';
@@ -21,12 +22,33 @@
 </head>
 <body>
   <div class="progress" aria-hidden="true"></div>
+  <div class="backdrop" aria-hidden="true"></div>
+  {% assign backdrops = site.static_files | where_exp: "f", "f.path contains '/images/backdrops/'" | map: "path" %}
+  <script>
+    // Background: a random image from images/backdrops/<set>/ on every page load, never the same
+    // one twice in a row. The set is chosen in Gallery and remembered; default is site.backdrop.
+    window.backdropSets = {}
+    for (const p of {{ backdrops | jsonify }}) (backdropSets[p.split('/')[3]] ??= []).push('{{ site.baseurl }}' + p)
+    window.setBackdrop = (set) => {
+      const fallback = {{ site.backdrop | jsonify }}
+      window.backdropSet = backdropSets[set] ? set : backdropSets[fallback] ? fallback : Object.keys(backdropSets)[0]
+      const list = backdropSets[backdropSet] || []
+      let last; try { last = sessionStorage.getItem('backdrop') } catch {}
+      const pool = list.length > 1 ? list.filter((p) => p !== last) : list
+      const pick = pool[Math.floor(Math.random() * pool.length)]
+      if (!pick) return
+      try { sessionStorage.setItem('backdrop', pick) } catch {}
+      document.querySelector('.backdrop').style.backgroundImage = `url("${encodeURI(pick)}")`
+    }
+    let chosenSet; try { chosenSet = localStorage.getItem('backdropSet') } catch {}
+    setBackdrop(chosenSet)
+  </script>
 
   <aside class="sidebar">
     <header>
       {% assign avatar = site.static_files | where_exp: "f", "f.path contains '/images/avatar.'" | first %}
       {% assign initials = site.name | split: " " %}
-      <div class="avatar">{% if avatar %}<img src="{{ avatar.path | relative_url }}" alt="{{ site.name }}">{% else %}<span aria-hidden="true">{{ initials.first | slice: 0 }}{{ initials.last | slice: 0 }}</span>{% endif %}</div>
+      <div class="avatar">{% if page.avatar %}<img src="{{ page.avatar | relative_url }}" alt="{{ site.name }}">{% elsif avatar %}<img src="{{ avatar.path | relative_url }}" alt="{{ site.name }}">{% else %}<span aria-hidden="true">{{ initials.first | slice: 0 }}{{ initials.last | slice: 0 }}</span>{% endif %}</div>
       <h1><a href="{{ '/' | relative_url }}">{{ site.name }}</a></h1>
       {% if site.pronouns %}<p class="pronouns">{{ site.pronouns }}</p>{% endif %}
       <p class="tagline">{{ site.tagline }}</p>
@@ -51,7 +73,7 @@
     {{ content }}
     <footer class="site-footer">
       <p>© {{ site.time | date: "%Y" }} {{ site.title }}</p>
-      <p>Palette &amp; type after <a href="https://hugo-apero.netlify.app/">Hugo Apéro</a> · layout after <a href="https://html5up.net/read-only">Read Only</a></p>
+      <p>Palette &amp; type after <a href="https://hugo-apero.netlify.app/">Hugo Apéro</a> · layout after <a href="https://html5up.net/read-only">Read Only</a> · illustrations by <a href="https://commons.wikimedia.org/wiki/Category:George_Barbier">George Barbier</a> &amp; <a href="https://commons.wikimedia.org/wiki/Category:Alphonse_Mucha">Alphonse Mucha</a> (public domain)</p>
     </footer>
   </main>
 

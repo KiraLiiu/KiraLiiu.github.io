@@ -14,6 +14,7 @@ Jekyll site, served by GitHub Pages at https://kiraliiu.github.io.
 | 首页按钮（Email / Scholar / LinkedIn / GitHub） | `_config.yml` 里填链接，空着就不显示 |
 | 名字、简介、链接、导航 | `_config.yml` |
 | 页面正文（首页简介、研究方向等） | `pages/` 里对应的 `.html` |
+| 背景插画 | 每个文件夹 `images/backdrops/<画集名>/` 是一套，每次打开页面随机换一张；访客在 Gallery 顶部的 Background 按钮切换画集。默认画集是 `_config.yml` 的 `backdrop:`。加一套：放一个新文件夹（裁掉纸边和标题字的版本），原图放进 `images/gallery/<同名>/` |
 | 换某一页的主题色 | 该页 `pages/*.html` 开头的 `hue:`（0–360 的色相，比如 265 长春花蓝、160 鼠尾草绿） |
 
 图片请用 jpg / png / webp（iPhone 的 HEIC 浏览器显示不了）。

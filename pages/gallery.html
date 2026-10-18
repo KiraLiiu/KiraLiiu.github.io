@@ -28,6 +28,16 @@ hue: 355
   <h2>Things I see &amp; make</h2>
   <p class="sub">Moments and work from away from the desk.</p>
 
+  {% assign sets = "" | split: "" %}
+  {% for f in site.static_files %}{% if f.path contains "/images/backdrops/" %}{% assign parts = f.path | split: "/" %}{% assign sets = sets | push: parts[3] %}{% endif %}{% endfor %}
+  {% assign sets = sets | uniq | sort %}
+  {% if sets.size > 1 %}
+  <div class="sets" role="group" aria-label="Background illustrations">
+    <span>Background</span>
+    {% for s in sets %}<button type="button" data-set="{{ s }}" aria-pressed="false">{{ s }}</button>{% endfor %}
+  </div>
+  {% endif %}
+
   {% if photos.size == 0 %}
   <p class="empty">Photos coming soon.</p>
   {% else %}

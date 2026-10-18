@@ -36,9 +36,11 @@ $$('.reveal').forEach((el) => {
 // Reading progress bar + back-to-top button
 const bar = $('.progress')
 const toTop = $('.to-top')
+const backdrop = $('.backdrop')
 const onScroll = () => {
   const max = root.scrollHeight - innerHeight
   bar.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`
+  backdrop?.style.setProperty('--p', max > 0 ? scrollY / max : 0)
   toTop.classList.toggle('show', scrollY > 500)
 }
 addEventListener('scroll', onScroll, { passive: true })
@@ -61,6 +63,16 @@ $$('.filters').forEach((bar) => {
     })
   }))
 })
+
+// Background set picker (Gallery): remember the choice and switch right away
+const setBtns = $$('.sets button')
+const markSet = () => setBtns.forEach((b) => b.setAttribute('aria-pressed', b.dataset.set === window.backdropSet))
+setBtns.forEach((b) => b.addEventListener('click', () => {
+  try { localStorage.setItem('backdropSet', b.dataset.set) } catch {}
+  setBackdrop(b.dataset.set)
+  markSet()
+}))
+markSet()
 
 // Gallery lightbox (only on the Gallery page)
 const box = $('.lightbox')

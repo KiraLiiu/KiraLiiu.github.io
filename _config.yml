@@ -12,6 +12,8 @@ scholar: https://scholar.google.com/citations?hl=en&user=ja1f6lkAAAAJ
 
 url: https://kiraliiu.github.io
 
+backdrop: George Barbier   # default background set = a folder in images/backdrops/ (visitors can switch in Gallery)
+
 nav:
   - { title: Home, url: / }
   - { title: Research, url: /research/ }
