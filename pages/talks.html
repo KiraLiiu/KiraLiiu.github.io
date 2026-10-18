@@ -4,14 +4,14 @@ title: Talks
 permalink: /talks/
 hue: 200
 ---
-{% assign talks = site.data.conferences | where: "kind", "Talk" %}
+{% assign talks = site.data.conferences | where_exp: "c", "c.kind != 'Poster'" %}
 <section>
   <p class="eyebrow">Talks</p>
   <h2>Talks</h2>
   <p class="sub">Sharing my work beyond the lab: academic exchange and conversations with the wider community.</p>
   {% if talks.size > 0 %}
   <ul class="pubs confs">
-    {% for t in talks %}{% include presentation.html item=t %}{% endfor %}
+    {% for t in talks %}{% include presentation.html item=t hide_kind=true %}{% endfor %}
   </ul>
   {% else %}
   <p class="empty">Talks will be listed here.</p>

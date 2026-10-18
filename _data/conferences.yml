@@ -1,9 +1,9 @@
 # Conference presentations, newest first. Shown under Conference on the Research page;
-# entries with kind: Talk also appear on the Talks page.
-# kind: Talk or Poster · upcoming: true adds an "Upcoming" label · your name (as in `me`) gets underlined.
+# every entry except posters also appears on the Talks page.
+# kind: Oral, Talk, or Poster · upcoming: true adds an "Upcoming" label · your name (as in `me`) gets underlined.
 # Optional: fields (same names as publications), video, thumb, links.
-- when: "2026"
-  kind: Talk
+- when: Nov 11, 2026
+  kind: Oral
   upcoming: true
   event: WPATH 2026
   title: "Minority Stress Pathways and Mental Health Outcomes: A National Survey of Transgender and Gender-Diverse Individuals in China"

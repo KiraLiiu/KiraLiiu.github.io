@@ -9,7 +9,7 @@ Jekyll site, served by GitHub Pages at https://kiraliiu.github.io.
 | 换头像 | 放一张 `images/avatar.jpg`（或 .png），删掉就恢复成首字母 |
 | 加作品 | 把图片拖进 `images/gallery/<分类>/`（分类可以是地点，如 `Japan/`），文件夹名就是分类，文件名就是标题：`2025-Morning-Light.jpg` → *Morning Light · 2025* |
 | 放 CV 下载 | 把 PDF 命名为 `cv.pdf`（或 `cv-clinical.pdf` 等）放进 `files/`，CV 页自动出现下载按钮 |
-| 新闻 / 论文 / 报告 / 音乐 / 履历 | 改 `_data/` 里对应的 `.yml` 文件（会议是 `conferences.yml`：全部显示在 Research 的 Conference，`kind: Talk` 的同时出现在 Talks 页）|
+| 新闻 / 论文 / 报告 / 音乐 / 履历 | 改 `_data/` 里对应的 `.yml` 文件（会议是 `conferences.yml`：全部显示在 Research 的 Conference，除 Poster 外的同时出现在 Talks 页）|
 | 地图上加一个去过的地方 | 在 `_data/places.yml` 加一行：名字 + 经纬度（Google Maps 右键可复制） |
 | 首页按钮（Email / Scholar / LinkedIn / GitHub） | `_config.yml` 里填链接，空着就不显示 |
 | 名字、简介、链接、导航 | `_config.yml` |

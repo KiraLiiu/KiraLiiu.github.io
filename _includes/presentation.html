@@ -1,11 +1,11 @@
-{% comment %} One conference entry. Usage: include presentation.html item=c {% endcomment %}
+{% comment %} One conference entry. Usage: include presentation.html item=c [hide_kind=true] {% endcomment %}
 {% assign c = include.item %}
 {% capture cme %}<span class="me">{{ c.me }}</span>{% endcapture %}
 <li class="pub reveal" data-cat="{{ c.fields | join: '|' }}">
   <time>{{ c.when }}</time>
   <div>
     <p class="tags">
-      <span class="tag kind">{{ c.kind }}</span>
+      {% unless include.hide_kind %}<span class="tag kind">{{ c.kind }}</span>{% endunless %}
       {% if c.upcoming %}<span class="tag role">Upcoming</span>{% endif %}
       {% for f in c.fields %}<span class="tag f-{{ f | slugify }}">{{ f }}</span>{% endfor %}
     </p>
